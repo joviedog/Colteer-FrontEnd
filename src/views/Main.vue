@@ -1,0 +1,37 @@
+<template>
+  {{ message }}
+</template>
+
+<script lang="ts">
+import {onMounted, ref} from 'vue';
+import {useStore} from "vuex";
+
+export default {
+  name: "Home",
+  setup() {
+    const message = ref('Welcome!');
+    const store = useStore();
+
+    onMounted(async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/auth/volunteer', {
+          headers: {'Content-Type': 'application/json'},
+          
+        });
+
+        const content = await response.json();
+
+        message.value = `Hi ${content.name}`;
+
+        await store.dispatch('setAuth', true);
+      } catch (e) {
+        await store.dispatch('setAuth', false);
+      }
+    });
+
+    return {
+      message
+    }
+  }
+}
+</script>
