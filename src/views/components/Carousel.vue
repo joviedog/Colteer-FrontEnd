@@ -11,11 +11,11 @@
         <div class="container py-0 pb-lg">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-5 mb-5 mb-lg-0">
-                    <h1 class="text-white font-weight-light">Bootstrap carousel</h1>
-                    <p class="lead text-white mt-4">Argon Design System comes with four pre-built pages to help you get
-                        started faster. You can change the text and images and you're good to go.</p>
-                    <a href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html"
-                       class="btn btn-white mt-4">See all components</a>
+                    <h1 class="text-white font-weight-light">Ofrece tu tiempo en beneficio de los demás</h1>
+                    <p class="lead text-white mt-4">El voluntariado no es una forma de estar, sino una forma de ser;
+                        no se trata solo de horas que se dedican a diferentes tareas, sino de estar atentos y abiertos 
+                        solidariamente a la mejora estructural de la sociedad en la cual vivimos, a la lucha por un mundo más 
+                        justo, solidario, equitativo e igualitario.</p>
                 </div>
                 <div class="col-lg-6 mb-lg-auto">
                     <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
@@ -23,8 +23,10 @@
                                     controls
                                     indicators>
                             <!-- Text slides with image -->
-                            <b-carousel-slide img-src="img/theme/img-1-1200x1000.jpg"></b-carousel-slide>
-                            <b-carousel-slide img-src="img/theme/img-2-1200x1000.jpg"></b-carousel-slide>
+                            <b-carousel-slide img-src="img/carousel/vol1.png"></b-carousel-slide>
+                            <b-carousel-slide img-src="img/carousel/vol2.jpg"></b-carousel-slide>
+                            <b-carousel-slide img-src="img/carousel/vol3.jpeg"></b-carousel-slide>
+                            <b-carousel-slide img-src="img/carousel/vol4.jpg"></b-carousel-slide>
                         </b-carousel>
                     </div>
                 </div>
