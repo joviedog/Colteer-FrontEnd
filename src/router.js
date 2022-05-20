@@ -7,6 +7,9 @@ import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
+import Dashboard from "./views/Dashboard.vue";
+import HeaderDashboard from "./views/HeaderDashboard.vue"
+import AddVolunteering from "./views/AddVolunteering.vue";
 
 Vue.use(Router);
 
@@ -53,8 +56,26 @@ export default new Router({
       path: "/profile",
       name: "profile",
       components: {
-        header: AppHeader,
+        header: HeaderDashboard,
         default: Profile,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/dashboard",
+      name: "dashboard",
+      components: {
+        header: HeaderDashboard,
+        default: Dashboard,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/addVolunteering",
+      name: "addVolunteering",
+      components: {
+        header: HeaderDashboard,
+        default: AddVolunteering,
         footer: AppFooter
       }
     }

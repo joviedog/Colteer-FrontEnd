@@ -19,10 +19,16 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import Argon from "./plugins/argon-kit";
-import './registerServiceWorker'
+import './registerServiceWorker';
+//import axios from 'axios';
+//import VueAxios from 'vue-axios';
+
+//axios.defaults.baseURL = 'http://127.0.0.1:8000/'
 
 Vue.config.productionTip = false;
 Vue.use(Argon);
+//Vue.use(axios);
+//Vue.use(VueAxios);
 new Vue({
   router,
   render: h => h(App)
