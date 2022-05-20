@@ -70,11 +70,13 @@
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 
+let fechaActual = new Date();
+
 export default {
     data() {
         return {
             dates: {
-            simple: new Date().toISOString().split('T')[0] //Esto es para el calendario
+            simple: fechaActual.toISOString().split('T')[0] //Esto es para el calendario
             //Tiene que agregar las demas variables para los otros campos
           }
         };
