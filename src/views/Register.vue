@@ -90,11 +90,12 @@ export default {
     },
     methods: {
         async handleSubmit(){
-            await axios.post('register_volunteer',{
+            await axios.post('http://localhost:8000/api/auth/register_volunteer',{
                 name:this.name,
                 username:this.username,
                 email:this.email,
                 document:this.document,
+                phone:this.phone,
                 birthday:this.birthday,
                 password:this.password,
             });
