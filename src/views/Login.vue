@@ -52,22 +52,29 @@
     </section>
 </template>
 <script>
-export default {
-    data() {
-        return {
-            user: "",
-            password: "",
-            //Ya estan las variables para obtener los datos de los campos, para
-            //acceder a ellas debe usar this.user o this.password
-        };
-    },
-    methods:{
-        iniciarSesion(){
-            console.log("Hola Jorge");
+    import {reactive} from 'vue';
+    import {useRouter} from "vue-router";
+    import router from '../router/index';
+    import axios from 'axios';
+
+    export default {
+        name:'Login',
+        data() {
+            return {
+                email:'',
+                password:''
+            }
+        },
+        methods:{
+            handleSubmit(){
+                const response = await axios.post('login',{
+                    email:this.email,
+                    password:this.password
+                });
+                localStorage.setItem('token',response.data.token);
+            }
         }
-        //Aqui van los metodos que despues puede llamar
     }
-};
 </script>
 <style>
 </style>
