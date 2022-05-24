@@ -10,6 +10,13 @@
             <span></span>
             <span></span>
         </div>
+        <base-alert type="danger" dismissible v-if="this.errorInicioSesion">
+            <span class="alert-inner--icon"><i class="fa fa-exclamation-triangle"></i></span>
+            <span class="alert-inner--text"><strong>¡Error!</strong> Usuario o contraseña incorrectas</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </base-alert>
         <div class="container pt-lg-md">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
@@ -59,23 +66,26 @@ export default {
         return {
             email: "",
             password: "",
+            errorInicioSesion : false,
         };
     },
     methods: {
         async iniciarSesion() {
             var payload = {
                 email: this.email,
-                password: this.password
+                password: this.password,
             };
-            try{
+            try {
+                this.errorInicioSesion = false;
                 let response = await axios.post("http://localhost:8000/api/auth/login", payload);
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
                 localStorage.setItem('token', response.data.token);
                 this.$router.push('/dashboard');
-            }catch(error){
+            } catch (error) {
                 console.log(error.response.data);
+                this.errorInicioSesion = true;
             }
-            
+
         },
     }
 };
