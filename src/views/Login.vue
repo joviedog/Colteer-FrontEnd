@@ -21,8 +21,8 @@
                             </div>
                             <form v-on:submit.prevent="iniciarSesion">
                                 <div class="form-group">
-                                    <input alternative  class="form-control" placeholder="Email"
-                                    v-model="user" required>
+                                    <input alternative class="form-control" placeholder="Email" v-model="email"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" alternative type="password" placeholder="Password"
@@ -52,20 +52,31 @@
     </section>
 </template>
 <script>
+import axios from "axios";
+//import VueAxios from "vue-axios";
 export default {
     data() {
         return {
-            user: "",
+            email: "",
             password: "",
-            //Ya estan las variables para obtener los datos de los campos, para
-            //acceder a ellas debe usar this.user o this.password
         };
     },
-    methods:{
-        iniciarSesion(){
-            console.log("Hola Jorge");
-        }
-        //Aqui van los metodos que despues puede llamar
+    methods: {
+        async iniciarSesion() {
+            var payload = {
+                email: this.email,
+                password: this.password
+            };
+            try{
+                let response = await axios.post("http://localhost:8000/api/auth/login", payload);
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
+                localStorage.setItem('token', response.data.token);
+                this.$router.push('/dashboard');
+            }catch(error){
+                console.log(error.response.data);
+            }
+            
+        },
     }
 };
 </script>
