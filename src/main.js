@@ -20,15 +20,14 @@ import App from "./App.vue";
 import router from "./router";
 import Argon from "./plugins/argon-kit";
 import './registerServiceWorker';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
+import axios from "axios";
 
-//axios.defaults.baseURL = 'http://127.0.0.1:8000/'
+var token = localStorage.getItem('token');
+if(token)
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
 Vue.config.productionTip = false;
 Vue.use(Argon);
-//Vue.use(axios);
-//Vue.use(VueAxios);
 new Vue({
   router,
   render: h => h(App)

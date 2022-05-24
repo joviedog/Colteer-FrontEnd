@@ -10,6 +10,13 @@
             <span></span>
             <span></span>
         </div>
+        <base-alert type="danger" dismissible v-if="this.errorInicioSesion">
+            <span class="alert-inner--icon"><i class="fa fa-exclamation-triangle"></i></span>
+            <span class="alert-inner--text"><strong>¡Error!</strong> Usuario o contraseña incorrectas</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </base-alert>
         <div class="container pt-lg-md">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
@@ -21,8 +28,8 @@
                             </div>
                             <form v-on:submit.prevent="iniciarSesion">
                                 <div class="form-group">
-                                    <input alternative  class="form-control" placeholder="Email"
-                                    v-model="user" required>
+                                    <input alternative class="form-control" placeholder="Email" v-model="email"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" alternative type="password" placeholder="Password"
@@ -52,29 +59,36 @@
     </section>
 </template>
 <script>
-    import {reactive} from 'vue';
-    import {useRouter} from "vue-router";
-    import router from '../router/index';
-    import axios from 'axios';
+import axios from "axios";
+//import VueAxios from "vue-axios";
+export default {
+    data() {
+        return {
+            email: "",
+            password: "",
+            errorInicioSesion : false,
+        };
+    },
+    methods: {
+        async iniciarSesion() {
+            var payload = {
+                email: this.email,
+                password: this.password,
+            };
+            try {
+                this.errorInicioSesion = false;
+                let response = await axios.post("http://localhost:8000/api/auth/login", payload);
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
+                localStorage.setItem('token', response.data.token);
+                this.$router.push('/dashboard');
+            } catch (error) {
+                console.log(error.response.data);
+                this.errorInicioSesion = true;
+            }
 
-    export default {
-        name:'Login',
-        data() {
-            return {
-                email:'',
-                password:''
-            }
         },
-        methods:{
-            handleSubmit(){
-                const response = await axios.post('login',{
-                    email:this.email,
-                    password:this.password
-                });
-                localStorage.setItem('token',response.data.token);
-            }
-        }
     }
+};
 </script>
 <style>
 </style>
