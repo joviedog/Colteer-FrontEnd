@@ -25,7 +25,7 @@ import VueAxios from "vue-axios";
 
 var token = localStorage.getItem('token');
 if(token)
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    axios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
 Vue.config.productionTip = false;
 Vue.use(Argon, axios, VueAxios);
