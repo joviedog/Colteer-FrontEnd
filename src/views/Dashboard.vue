@@ -41,17 +41,13 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
-                                <div class="row row-grid">
-                                    <div class="col-lg-4">
+                                <div class="row row-grid" v-for="(item, index) in this.sessions" :key="index">
+                                    <div class="col-lg-4" v-if="index % 3 === 0">
                                         <card class="border-0" hover shadow body-classes="py-5">
                                             <icon name="ni ni-check-bold" type="primary" rounded class="mb-4">
                                             </icon>
-                                            <h6 class="text-primary text-uppercase">Voluntariado 1</h6>
-                                            <p class="description mt-3">Aquí va la descripción del voluntariado. Para
-                                                este
-                                                ejemplo se va
-                                                a realizar una ronda de chequeos medicos en Chapinero.
-                                            </p>
+                                            <h6 class="text-primary text-uppercase">{{item.name}}</h6>
+                                            <p class="description mt-3">{{item.description}}</p>
                                             <div>
                                                 <badge type="primary" rounded>Bogotá</badge>
                                                 <badge type="primary" rounded>Día/Mes/Año</badge>
@@ -62,14 +58,12 @@
                                             </base-button>
                                         </card>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4" v-if="index % 3 === 1">
                                         <card class="border-0" hover shadow body-classes="py-5">
                                             <icon name="ni ni-istanbul" type="success" rounded class="mb-4">
                                             </icon>
-                                            <h6 class="text-success text-uppercase">Voluntariado 2</h6>
-                                            <p class="description mt-3">Nuevamente aquí va la descripción del
-                                                segundo voluntariado. Este es en el Banco de Alimentos
-                                            </p>
+                                            <h6 class="text-success text-uppercase">{{item.name}}</h6>
+                                            <p class="description mt-3">{{item.description}}</p>
                                             <div>
                                                 <badge type="success" rounded>Cali</badge>
                                                 <badge type="success" rounded>Día/Mes/Año</badge>
@@ -80,14 +74,12 @@
                                             </base-button>
                                         </card>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4" v-if="index % 3 === 2">
                                         <card class="border-0" hover shadow body-classes="py-5">
                                             <icon name="ni ni-planet" type="warning" rounded class="mb-4">
                                             </icon>
-                                            <h6 class="text-warning text-uppercase">Voluntariado 3</h6>
-                                            <p class="description mt-3">Para este último voluntariado, vamos a ir a la
-                                                fundación "Red de arboles" en la ciudad de Bogotá
-                                            </p>
+                                            <h6 class="text-warning text-uppercase">{{item.name}}</h6>
+                                            <p class="description mt-3">{{item.description}}</p>
                                             <div>
                                                 <badge type="warning" rounded>Bogotá</badge>
                                                 <badge type="warning" rounded>Día/Mes/Año</badge>
@@ -99,6 +91,7 @@
                                         </card>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -142,11 +135,33 @@
     </div>
 </template>
 <script>
+import axios from "axios"
+
 export default {
     data() {
         return {
             aux: localStorage.getItem('token'),
+            sessions: {},
         };
+    },
+    methods: {
+        async getVoluntariados() {
+            try {
+                const headers = {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                let response = await axios.get("http://localhost:8000/api/sessions/", {headers});
+                console.log(response.data);
+                this.sessions = response.data;
+            } catch (error) {
+                console.log(error);
+
+            }
+
+        },
+    },
+    mounted() {
+        this.getVoluntariados();
     }
 };
 </script>
