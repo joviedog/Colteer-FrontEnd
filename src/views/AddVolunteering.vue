@@ -9,6 +9,22 @@
                 <span></span>
                 <span></span>
             </div>
+            <base-alert type="success" dismissible v-if="this.creacionExitosa">
+                <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                <span class="alert-inner--text"><strong>¡Gracias por ayudar! </strong> La sesión de voluntariado se ha
+                    creado correctamente.</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </base-alert>
+            <base-alert type="danger" dismissible v-if="this.errorCrearSesion">
+                <span class="alert-inner--icon"><i class="fa fa-exclamation-triangle"></i></span>
+                <span class="alert-inner--text"><strong>¡Error! </strong> Ha ocurrido un error al crear la sesión, por
+                    favor vuelve a intentarlo</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </base-alert>
             <div class="container py-0">
                 <div class="row justify-content-center">
                     <div class="row"></div>
@@ -25,25 +41,21 @@
                                 <small class="text-white">Recuerda que debe ser un nombre corto y descriptivo</small>
                             </div>
                             <div class="form-group">
-                                <h5 for="inputNombreSesion" class="text-white">Descripción de la sesión</h5>
+                                <h5 for="textDescription" class="text-white">Descripción de la sesión</h5>
                                 <textarea class="form-control" id="textDescription" rows="4"
                                     placeholder="Ingresa la descripción (máximo 200 caracteres)" maxlength="200"
                                     resize="none" v-model="descripcionSesion" required></textarea>
                             </div>
+
                             <div class="form-group">
                                 <h5 for="inputNombreSesion" class="text-white">Selecciona la fecha y hora de inicio y
                                     final de
                                     la sesión</h5>
-                                <!-- <base-input addon-left-icon="ni ni-calendar-grid-58">
-                                    <flat-picker slot-scope="{focus, blur}" @on-open="focus" @on-close="blur"
-                                        :config="{ allowInput: true, minDate: new Date(), enableTime: true }"
-                                        class="form-control datepicker" v-model="dates.simple" minDate>
-                                    </flat-picker>
-                                </base-input> -->
                                 <base-input addon-left-icon="ni ni-calendar-grid-58">
-                                    <flat-picker slot-scope="{focus, blur}" @on-open="focus" @on-close="blur"
-                                        :config="{ allowInput: true, mode: 'range', enableTime: true, minDate: new Date() }"
-                                        class="form-control datepicker" v-model="dates.range" required>
+                                    <flat-picker slot-scope="{focus, blur}" @on-open="focus" @on-close="blur" :config="{
+                                        allowInput: true, mode: 'range', enableTime: true, minDate: new Date(),
+                                        minuteIncrement: 1
+                                    }" class="form-control datepicker" v-model="dates.range" required>
                                     </flat-picker>
                                 </base-input>
                             </div>
@@ -63,37 +75,53 @@ import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+import axios from "axios";
 
 let fechaActual = new Date();
 let fechaPost = new Date();
 fechaPost.setDate(fechaPost.getDate() + 1);
 
 export default {
-    /*
-    data() {
-        return {
-            dates: {
-                simple: fechaActual.toISOString().split('T')[0]
-            },
-        };
-    },*/
     data() {
         return {
             dates: {
                 range: fechaActual.toISOString().split('T')[0] + " to " + fechaPost.toISOString().split('T')[0]
             },
-            nombreSesion : "",
-            descripcionSesion : "",
-            fechaSesion : "",
-            error : false,
-            error_msg : "",
+            nombreSesion: "",
+            descripcionSesion: "",
+            fechaSesion: "",
+            organizacion: 1,
+            errorCrearSesion: false,
+            creacionExitosa: false
         };
     },
-    methods:{
-        crearSesion(){
-            console.log(this.nombreSesion);
-            console.log(this.descripcionSesion);
-            console.log(this.dates.range);
+    methods: {
+        async crearSesion() {
+            try {
+                this.errorCrearSesion = false;
+                this.creacionExitosa = false;
+                let dataSession = {
+                    "name": this.nombreSesion,
+                    "date": this.dates.range.slice(0, 10),
+                    "start_time": this.dates.range.slice(11, 16),
+                    "end_time": this.dates.range.slice(31, 36),
+                    "description": this.descripcionSesion,
+                    "organization": 1,
+                    "volunteer": [1]
+                };
+                const headers = {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                let response = await axios.post("http://localhost:8000/api/sessions/create-session", dataSession, {headers});
+                this.creacionExitosa = true;
+                //console.log(response.data);
+                this.nombreSesion = "";
+                this.descripcionSesion = "";
+            } catch (error) {
+                console.log(error.response.data);
+                this.errorCrearSesion = true;
+            }
+
         },
     },
     components: {

@@ -2,7 +2,7 @@
     <div v-if="(aux != undefined)">
         <header class="header-global">
             <base-nav class="navbar-main" transparent type="" effect="light" expand>
-                <router-link slot="brand" class="navbar-brand mr-lg-5" to="#">
+                <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
                     <img src="img/brand/white.png">
                 </router-link>
 
@@ -34,7 +34,7 @@
                             <a class="dropdown-item" href="#/addVolunteering">Añadir Sesión Voluntariado</a>
                             <a class="dropdown-item" href="#/volunteerSearch">Buscar Voluntariado</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                            <a class="dropdown-item" type="button" v-on:click="cerrarSesion" style="cursor: pointer">Cerrar Sesión</a>
                         </base-dropdown>
 
                     </li>
@@ -47,12 +47,30 @@
 import BaseNav from "@/components/BaseNav";
 import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
+import axios from "axios";
 
 export default {
     data() {
         return {
             aux: localStorage.getItem('token'),
         };
+    },
+    methods:{
+        async cerrarSesion() {
+            try {
+                const headers = {
+                    "Content-Type" : "application/json",
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                await axios.post("http://localhost:8000/api/auth/logout", {}, {headers});
+                localStorage.removeItem('token');
+                this.$router.push('/');
+            } catch (error) {
+                console.log(error.response.data);
+
+            }
+
+        },
     },
     components: {
         BaseNav,
