@@ -30,6 +30,7 @@
                                 icon="fa fa-user-o fa-lg">
                                 Tu Usuario
                             </base-button>
+                            <a class="dropdown-item" href="#/dashboard">Ver Sesiones</a>
                             <a class="dropdown-item" href="#/profile">Ver Información</a>
                             <a class="dropdown-item" href="#/addVolunteering">Añadir Sesión Voluntariado</a>
                             <a class="dropdown-item" href="#/volunteerSearch">Buscar Voluntariado</a>

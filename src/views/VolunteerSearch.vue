@@ -20,7 +20,7 @@
                             <div class="col px-0">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <h1 class="display-3  text-white">Lista de posibles voluntarios</h1>  
+                                        <h1 class="display-3  text-white">Lista de voluntarios</h1>  
                                     </div>
                                 </div>
                             </div>
@@ -38,29 +38,21 @@
                                             <thead>
                                                 <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">First</th>
-                                                <th scope="col">Last</th>
-                                                <th scope="col">Handle</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Correo</th>
+                                                <th scope="col">Documento</th>
+                                                <th scope="col">Telefono</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
+                                                <tr v-for="voluntario in this.dataVolunteersearch" :key="voluntario.aux">
+                                                    <th scope="row"></th>
+                                                    <td>{{dataVolunteersearch.name}}</td>
+                                                    <td>{{dataVolunteersearch.email}}</td>
+                                                    <td>{{dataVolunteersearch.document}}</td>
+                                                    <td>{{dataVolunteersearch.phone}}</td>
                                                 </tr>
-                                                <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                <th scope="row">3</th>
-                                                <td colspan="2">Larry the Bird</td>
-                                                <td>@twitter</td>
-                                                </tr>
+                                                
                                             </tbody>
                                             </table>
                                     </div>
@@ -109,41 +101,38 @@
 </template>
 <script>
 import axios from "axios";
-import GlobalDirectives from "../plugins/globalDirectives";
 
 
 export default {
     data() {
         return {
             aux: localStorage.getItem('token'),
-            dataVolunteerSearch:{},
+            dataVolunteersearch:{},
         };
-    },
-
-    mounted(){
-        /*if(localStorage.getItem('token')){
-            this.getVolunteerSearch();
-        }else{
-            this.$router.push("/login")
-        }*/
     },
 
     methods:{
         async getVolunteerSearch(){
             try {
                 const headers={
-                    'Authorization': 'Token' + localStorage.getItem('token') 
+                    'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-
-                let response = await axios.get("http://localhost:8000/api/auth/volunteer",{headers});
+                let response = await axios.get("http://localhost:8000/api/auth/volunteer", {headers});
                 console.log(response.data);
-                this.dataVolunteerSearch= response.data;
+                this.dataVolunteersearch = response.data;
 
-            
             } catch (error) {
-                console.log(error.response.data)
+                console.log(error);
             }
         }
+    },
+    mounted(){
+        if(localStorage.getItem('token')){
+            this.getVolunteerSearch();
+        }else{
+            this.$router.push("/login")
+        }
+        //this.getVolunteerSearch();
     }
 
 
