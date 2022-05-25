@@ -50,7 +50,7 @@
                             <h3>Jessica Jones
                                 <span class="font-weight-light">, 27</span>
                             </h3>
-                            <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Nombre: {{getVolunteerInformation.setPost}} </div>
+                            <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Nombre: getVolunteerInformation.setPost </div>
                             <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>name</div>
                             <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>
                         </div>
@@ -77,46 +77,71 @@
 </template>
 <script>
 import axios from "axios";
+import GlobalDirectives from "../plugins/globalDirectives";
 
 export default {
     data() {
         return {
-            email: "",
+            aux: localStorage.getItem('token'),
+            dataVoluntario:{},
+            /*email: "",
             username: "",
             Voluntarioname:"",
             document: "",
             phone: "",
             birthday: ""
-            /*uservoluntar : true,*/
+            uservoluntar : true,*/
         };
     },
+
+    mounted(){
+        /*if(localStorage.getItem('token')){
+            this.getVolunteerInformation();
+        }else{
+            this.$router.push("/login")
+        }*/
+        this.getVolunteerInformation();
+    },
+
     methods: {
         async getVolunteerInformation(){
-            
             try {
-                var datavoluntario = {
-                    email: this.email,
-                    username: this.username,
-                    Voluntarioname: this.name,
-                    document: this.document,
-                    phone: this.phone,
-                    birthday: this.birthday,
+
+                const headers={
+                    'Authorization': 'Token' + localStorage.getItem('token') 
                 };
 
-                let response = await axios.get("http://localhost:8000/api/auth/volunteer", {
-                    headers:{
-                        'Authorization': localStorage.getItem('token')
-                    }
-                
-                });
-             this.dataVoluntario = response.data;
-            //commit('setPosts', response.data)
+                let response = await axios.get("http://localhost:8000/api/auth/volunteer", {headers});
+
+                console.log(response.data);
+                this.dataVoluntario = response.data;
+
          } catch (error) {
-             console.log(error.response.data)
+             console.log(error);
            }
      },
      
     }
+    
+    /*methods: {
+        getVolunteerInformation(){
+            let config={
+                headers:{
+                    'token': Global.token
+                }
+            }
+            axios.get("http://localhost:8000/api/auth/volunteer",config).then{
+                res=>{
+                    if(res.status==200){
+                        this.dataVoluntario=res.data;
+                        console.log('dataVoluntario', this.dataVoluntario);
+                    }else{
+                        alert("no sirve");
+                    }
+                }
+            }
+        }
+    },*/
     
 };
 /*export default {

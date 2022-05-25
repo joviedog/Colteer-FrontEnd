@@ -10,6 +10,7 @@ import Profile from "./views/Profile.vue";
 import Dashboard from "./views/Dashboard.vue";
 import HeaderDashboard from "./views/HeaderDashboard.vue"
 import AddVolunteering from "./views/AddVolunteering.vue";
+import VolunteerSearch from "./views/VolunteerSearch.vue";
 
 Vue.use(Router);
 
@@ -76,6 +77,15 @@ export default new Router({
       components: {
         header: HeaderDashboard,
         default: AddVolunteering,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/volunteerSearch",
+      name: "volunteerSearch",
+      components: {
+        header: HeaderDashboard,
+        default: VolunteerSearch,
         footer: AppFooter
       }
     }
