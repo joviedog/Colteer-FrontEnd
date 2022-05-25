@@ -8,8 +8,9 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import Dashboard from "./views/Dashboard.vue";
-import HeaderDashboard from "./views/HeaderDashboard.vue"
+import HeaderDashboard from "./views/HeaderDashboard.vue";
 import AddVolunteering from "./views/AddVolunteering.vue";
+import RegisterOrganization from "./views/RegisterOrganization.vue";
 
 Vue.use(Router);
 
@@ -76,6 +77,15 @@ export default new Router({
       components: {
         header: HeaderDashboard,
         default: AddVolunteering,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/register-organization",
+      name: "register-organization",
+      components: {
+        header: AppHeader,
+        default: RegisterOrganization,
         footer: AppFooter
       }
     }
