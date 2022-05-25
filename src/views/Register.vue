@@ -22,11 +22,11 @@
                             <form v-on:submit.prevent="registrarVoluntario">
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Nombre</h6>
-                                    <input alternative class="form-control" placeholder="Nombre Completo" required>
+                                    <input alternative class="form-control" placeholder="Name" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Usuario</h6> <!-- Cambie los placeholder-->
-                                    <input alternative class="form-control" placeholder="Email" required>
+                                    <input alternative class="form-control" placeholder="Username" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Correo</h6>
@@ -34,11 +34,11 @@
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Teléfono</h6>
-                                    <input alternative class="form-control" placeholder="Email" required>
+                                    <input alternative class="form-control" placeholder="Phone" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Documento de Identidad</h6>
-                                    <input alternative class="form-control" placeholder="Email" required>
+                                    <input alternative class="form-control" placeholder="Document" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Fecha de Nacimiento</h6>
@@ -78,10 +78,29 @@ export default {
             dates: {
             simple: fechaActual.toISOString().split('T')[0] //Esto es para el calendario
             //Tiene que agregar las demas variables para los otros campos
-          }
+        },
+        name: '',
+        username:'',
+        email: '',
+        document: '',
+        phone: '',
+        birthday: '',
+        password: ''          
         };
     },
     methods: {
+        async handleSubmit(){
+            await axios.post('http://localhost:8000/api/auth/register_volunteer',{
+                name:this.name,
+                username:this.username,
+                email:this.email,
+                document:this.document,
+                phone:this.phone,
+                birthday:this.birthday,
+                password:this.password,
+            });
+            this.$router.push('/login');
+        },
         registrarVoluntario() {
             console.log("Usuario registrado");
         }

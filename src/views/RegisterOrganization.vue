@@ -20,34 +20,46 @@
   </form>
 </template>
 
-<script lang="ts">
-import {reactive} from 'vue';
-import {useRouter} from "vue-router";
+<script>
+  import flatPicker from "vue-flatpickr-component";
+  import "flatpickr/dist/flatpickr.css";
+  import axios from 'axios';
+
+
+let fechaActual = new Date();
 
 export default {
-  name: "Register",
-  setup() {
-    const data = reactive({
-      name: '',
-      email: '',
-      password: ''
-    });
-    const router = useRouter();
-
-    const submit = async () => {
-      await fetch('http://localhost:8000/api/auth/register_organization', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-      });
-
-      await router.push('/login');
-    }
-
-    return {
-      data,
-      submit
-    }
-  }
-}
+    data() {
+        return {
+            dates: {
+            simple: fechaActual.toISOString().split('T')[0] //Esto es para el calendario
+            //Tiene que agregar las demas variables para los otros campos
+        },
+         name: '',
+         username: '',
+         email: '',
+         phone: '',
+         document: '',
+         org_type: '',
+         password: ''     
+        };
+    },
+    methods: {
+        async handleSubmit(){
+            await axios.post('http://localhost:8000/api/auth/register_organization',{
+                name:this.name,
+                username:this.username,
+                email:this.email,
+                phone:this.phone,
+                document:this.document,
+                org_type:this.org_type,
+            });
+            this.$router.push('/login');
+        },
+        registrarVoluntario() {
+            console.log("Usuario registrado");
+        }
+    },
+    components: { flatPicker }
+};
 </script>
