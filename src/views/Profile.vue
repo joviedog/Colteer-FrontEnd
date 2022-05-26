@@ -35,7 +35,7 @@
                             <h3><img src="@/assets/ColteerImg/Icons/person.svg"> {{datavoluntario.name}}
                                 <span class="font-weight-light"></span>
                             </h3>
-                            <img src="@/assets/ColteerImg/Icons/person.svg">
+                            
                             <div class="h6 mt-4"><img src="@/assets/ColteerImg/Icons/person.svg"><i class="ni business_briefcase-24 mr-2"></i> {{datavoluntario.username}} </div>
                             <div class="h6 mt-4"><img src="@/assets/ColteerImg/Icons/calendar.svg"><i class="ni business_briefcase-24 mr-2"></i> {{datavoluntario.birthday}} </div>
                             <div class="h6 mt-4"><img src="@/assets/ColteerImg/Icons/email.svg"><i class="ni business_briefcase-24 mr-2"></i> {{datavoluntario.email}}</div>
