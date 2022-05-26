@@ -8,10 +8,9 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import Dashboard from "./views/Dashboard.vue";
-import HeaderDashboard from "./views/HeaderDashboard.vue";
+import HeaderDashboard from "./views/HeaderDashboard.vue"
 import AddVolunteering from "./views/AddVolunteering.vue";
-import RegisterOrganization from "./views/RegisterOrganization.vue";
-import Donations from "./views/Donations.vue"
+import VolunteerSearch from "./views/VolunteerSearch.vue";
 
 Vue.use(Router);
 
@@ -82,22 +81,13 @@ export default new Router({
       }
     },
     {
-      path: "/register-organization",
-      name: "register-organization",
+      path: "/volunteerSearch",
+      name: "volunteerSearch",
       components: {
-        header: AppHeader,
-        default: RegisterOrganization,
+        header: HeaderDashboard,
+        default: VolunteerSearch,
         footer: AppFooter
       }
-    },  
-    {
-      path: "/donations",
-      name: "donations",
-      components: {
-        header: AppHeader,
-        default: Donations,
-        footer: AppFooter
-      }  
     }
   ],
   scrollBehavior: to => {

@@ -60,7 +60,7 @@
 </template>
 <script>
 import axios from "axios";
-//import VueAxios from "vue-axios";
+
 export default {
     data() {
         return {
@@ -78,7 +78,6 @@ export default {
             try {
                 this.errorInicioSesion = false;
                 let response = await axios.post("http://localhost:8000/api/auth/login", payload);
-                axios.defaults.headers.common['Authorization'] = 'Token ' + response.data.token;
                 localStorage.setItem('token', response.data.token);
                 this.$router.push('/dashboard');
             } catch (error) {

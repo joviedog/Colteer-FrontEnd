@@ -15,10 +15,11 @@ export default {
     Hero,
     Carousel,
   },
+  /*
   name: 'Home',
   async created(){
     const response  = await axios.get('user');
     console.log(response);
-  }
+  }*/
 };
 </script>
