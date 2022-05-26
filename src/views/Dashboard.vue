@@ -41,57 +41,67 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
+
                                 <div class="row row-grid" v-for="(item, index) in this.sessions" :key="index">
-                                    <div class="col-lg-4" v-if="index % 3 === 0">
+                                    <div class="col-lg-8" v-if="index % 3 === 0">
                                         <card class="border-0" hover shadow body-classes="py-5">
                                             <icon name="ni ni-check-bold" type="primary" rounded class="mb-4">
                                             </icon>
-                                            <h6 class="text-primary text-uppercase">{{item.name}}</h6>
-                                            <p class="description mt-3">{{item.description}}</p>
+                                            <h6 class="text-primary text-uppercase">{{ item.name }}</h6>
+                                            <p class="description mt-3">{{ item.description }}</p>
                                             <div>
-                                                <badge type="primary" rounded>Bogotá</badge>
-                                                <badge type="primary" rounded>Día/Mes/Año</badge>
-                                                <badge type="primary" rounded>Hora Inicio:Hora Fin</badge>
+                                                <badge type="primary" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
+                                                </badge>
+                                                <badge type="primary" rounded>{{ "Hora Inicio: " + item.start_time }}
+                                                </badge>
+                                                <badge type="primary" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
                                             </div>
-                                            <base-button tag="a" href="#" type="primary" class="mt-4">
-                                                Leer Más
+                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="primary"
+                                                class="mt-4">
+                                                ¡Inscríbete!
                                             </base-button>
                                         </card>
                                     </div>
-                                    <div class="col-lg-4" v-if="index % 3 === 1">
+                                    <div class="col-lg-8" v-if="index % 3 === 1">
                                         <card class="border-0" hover shadow body-classes="py-5">
                                             <icon name="ni ni-istanbul" type="success" rounded class="mb-4">
                                             </icon>
-                                            <h6 class="text-success text-uppercase">{{item.name}}</h6>
-                                            <p class="description mt-3">{{item.description}}</p>
+                                            <h6 class="text-success text-uppercase">{{ item.name }}</h6>
+                                            <p class="description mt-3">{{ item.description }}</p>
                                             <div>
-                                                <badge type="success" rounded>Cali</badge>
-                                                <badge type="success" rounded>Día/Mes/Año</badge>
-                                                <badge type="success" rounded>Hora Inicio:Hora Fin</badge>
+                                                <badge type="success" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
+                                                </badge>
+                                                <badge type="success" rounded>{{ "Hora Inicio: " + item.start_time }}
+                                                </badge>
+                                                <badge type="success" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
                                             </div>
-                                            <base-button tag="a" href="#" type="success" class="mt-4">
-                                                Leer Más
+                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="success"
+                                                class="mt-4">
+                                                ¡Inscríbete!
                                             </base-button>
                                         </card>
                                     </div>
-                                    <div class="col-lg-4" v-if="index % 3 === 2">
+                                    <div class="col-lg-8" v-if="index % 3 === 2">
                                         <card class="border-0" hover shadow body-classes="py-5">
                                             <icon name="ni ni-planet" type="warning" rounded class="mb-4">
                                             </icon>
-                                            <h6 class="text-warning text-uppercase">{{item.name}}</h6>
-                                            <p class="description mt-3">{{item.description}}</p>
+                                            <h6 class="text-warning text-uppercase">{{ item.name }}</h6>
+                                            <p class="description mt-3">{{ item.description }}</p>
                                             <div>
-                                                <badge type="warning" rounded>Bogotá</badge>
-                                                <badge type="warning" rounded>Día/Mes/Año</badge>
-                                                <badge type="warning" rounded>Hora Inicio:Hora Fin</badge>
+                                                <badge type="warning" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
+                                                </badge>
+                                                <badge type="warning" rounded>{{ "Hora Inicio: " + item.start_time }}
+                                                </badge>
+                                                <badge type="warning" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
                                             </div>
-                                            <base-button tag="a" href="#" type="warning" class="mt-4">
-                                                Learn more
+                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="warning"
+                                                class="mt-4">
+                                                ¡Inscríbete!
                                             </base-button>
                                         </card>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -118,10 +128,13 @@
                             <div class="col px-0">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-6">
-                                        <h1 class="display-3  text-white"><center>Oooops. Parece que no has iniciado sesión</center>
+                                        <h1 class="display-3  text-white">
+                                            <center>Oooops. Parece que no has iniciado sesión</center>
                                         </h1>
-                                        <p class="lead  text-white"><center>Por favor, ve al apartado de Log In del home e inicia sesión.
-                                            Muchas personas necesitan de tu tiempo y disposición hacia los voluntariados.</center>
+                                        <p class="lead  text-white">
+                                            <center>Por favor, ve al apartado de Log In del home e inicia sesión.
+                                                Muchas personas necesitan de tu tiempo y disposición hacia los
+                                                voluntariados.</center>
                                         </p>
                                         <img src="img/theme/disconnected1.png" class="img-center img-fluid">
                                     </div>
@@ -135,13 +148,15 @@
     </div>
 </template>
 <script>
-import axios from "axios"
+import axios from "axios";
+import Swal from 'sweetalert2';
 
 export default {
     data() {
         return {
             aux: localStorage.getItem('token'),
-            sessions: {},
+            sessions: [],
+            n: 0
         };
     },
     methods: {
@@ -150,13 +165,74 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/sessions/", {headers});
-                console.log(response.data);
+                let response = await axios.get("http://localhost:8000/api/sessions/", { headers });
                 this.sessions = response.data;
+                this.n = this.sessions.length;
             } catch (error) {
                 console.log(error);
 
             }
+
+        },
+        async inscribirseSesion(nameSession) {
+            try {
+                var idSession = -1;
+                for (var i = 0; i < this.sessions.length; i++) {
+                    if (this.sessions[i].name == nameSession) {
+                        idSession = this.sessions[i].id;
+                    }
+                }
+                const headers = {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/register-volunteer";
+                let response = await axios.post(url, {}, { headers });
+            } catch (error) {
+                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo ha ido mal, Por favor, vuelve a intentarlo'
+                })
+            }
+
+        },
+        comprobarInscripcion(nameSession) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: '¿Estás seguro que te quieres inscribir a esta sesión?',
+                text: "Recuerda que la sesión a la que quieres aplicar es: " + nameSession,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: '¡Si, quiero aplicar!',
+                cancelButtonText: 'No, lo pensaré',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.inscribirseSesion(nameSession);
+                    swalWithBootstrapButtons.fire(
+                        'Todo Listo',
+                        'Te has inscrito correctamente a esta sesión. Gracias.',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Inscripción Cancelada',
+                        'Recuerda que puedes volver a inscribirte cuando quieras :)',
+                        'error'
+                    )
+                }
+            })
 
         },
     },

@@ -114,7 +114,6 @@ export default {
                 };
                 let response = await axios.post("http://localhost:8000/api/sessions/create-session", dataSession, {headers});
                 this.creacionExitosa = true;
-                //console.log(response.data);
                 this.nombreSesion = "";
                 this.descripcionSesion = "";
             } catch (error) {
