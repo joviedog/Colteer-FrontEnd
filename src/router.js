@@ -11,6 +11,7 @@ import Dashboard from "./views/Dashboard.vue";
 import HeaderDashboard from "./views/HeaderDashboard.vue";
 import AddVolunteering from "./views/AddVolunteering.vue";
 import RegisterOrganization from "./views/RegisterOrganization.vue";
+import Donations from "./views/Donations.vue"
 
 Vue.use(Router);
 
@@ -88,6 +89,15 @@ export default new Router({
         default: RegisterOrganization,
         footer: AppFooter
       }
+    },  
+    {
+      path: "/donations",
+      name: "donations",
+      components: {
+        header: AppHeader,
+        default: Donations,
+        footer: AppFooter
+      }  
     }
   ],
   scrollBehavior: to => {

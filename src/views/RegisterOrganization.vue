@@ -17,7 +17,7 @@
                         class="border-0">
                         <template>
                             <div class="text-center text-muted mb-4">
-                                <h4>Regístrate como Voluntario</h4>
+                                <h4>Regístrate como Organización</h4>
                             </div>
                             <form v-on:submit.prevent="registrarVoluntario">
                                 <div class="form-group">

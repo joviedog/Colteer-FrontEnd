@@ -144,6 +144,8 @@
 <script>
 export default {
     data() {
+
+        console.log(localStorage.getItem('token'));
         return {
             aux: localStorage.getItem('token'),
         };
