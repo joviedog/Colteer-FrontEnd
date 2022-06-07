@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="(user_type == 'Organization')">
         <section class="section section section-shaped my-0 overflow-hidden">
             <div class="shape shape-style-1 bg-gradient-warning">
                 <span></span>
@@ -172,6 +172,7 @@ export default {
             creacionExitosa: false,
             etiqueta: "Animales",
             city: "Arauca",
+            user_type: localStorage.getItem('user_type')
         };
     },
     methods: {
@@ -206,6 +207,8 @@ export default {
             if (!localStorage.getItem('token')) {
                 this.$router.push('/login');
             }
+            if (localStorage.getItem('user_type') != 'Organization')
+                this.$router.push('/dashboard');
         }
     },
     mounted() {

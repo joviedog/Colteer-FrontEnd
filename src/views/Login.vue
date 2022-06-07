@@ -79,6 +79,7 @@ export default {
                 this.errorInicioSesion = false;
                 let response = await axios.post("http://localhost:8000/api/auth/login", payload);
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user_type', response.data.user.user_type);
                 this.$router.push('/dashboard');
             } catch (error) {
                 console.log(error.response.data);
