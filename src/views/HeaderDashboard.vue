@@ -2,7 +2,7 @@
     <div v-if="(aux != undefined)">
         <header class="header-global">
             <base-nav class="navbar-main" transparent type="" effect="light" expand>
-                <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
+                <router-link slot="brand" class="navbar-brand mr-lg-5" to="/dashboard">
                     <img src="img/brand/white.png">
                 </router-link>
 
@@ -19,10 +19,8 @@
 
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                     <li class="nav-item">
-                        <!-- <div style="cursor: pointer" title="Ver Estadísticas">
-                    <i class="fa fa-bar-chart fa-lg" aria-hidden="true" style="color: white;" ></i>
-                </div> -->
-                        <base-button type="secondary" icon="ni ni-chart-bar-32" iconOnly></base-button>
+                        <base-button tag="a" type="secondary" href="#/statistics" role="button"
+                            icon="ni ni-chart-bar-32" iconOnly></base-button>
                     </li>
                     <li class="nav-item d-none d-lg-block ml-lg-4">
                         <base-dropdown>
@@ -32,10 +30,11 @@
                             </base-button>
                             <a class="dropdown-item" href="#/dashboard">Ver Sesiones</a>
                             <a class="dropdown-item" href="#/profile">Ver Información</a>
-                            <a class="dropdown-item" href="#/addVolunteering">Añadir Sesión Voluntariado</a>
+                            <a class="dropdown-item" href="#/addVolunteering" v-if="(user_type == 'Organization')">Añadir Sesión Voluntariado</a>
                             <a class="dropdown-item" href="#/volunteerSearch">Buscar Voluntariado</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" type="button" v-on:click="cerrarSesion" style="cursor: pointer">Cerrar Sesión</a>
+                            <a class="dropdown-item" type="button" v-on:click="cerrarSesion"
+                                style="cursor: pointer">Cerrar Sesión</a>
                         </base-dropdown>
 
                     </li>
@@ -54,16 +53,17 @@ export default {
     data() {
         return {
             aux: localStorage.getItem('token'),
+            user_type: localStorage.getItem('user_type'),
         };
     },
-    methods:{
+    methods: {
         async cerrarSesion() {
             try {
                 const headers = {
-                    "Content-Type" : "application/json",
+                    "Content-Type": "application/json",
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                await axios.post("http://localhost:8000/api/auth/logout", {}, {headers});
+                await axios.post("http://localhost:8000/api/auth/logout", {}, { headers });
                 localStorage.removeItem('token');
                 this.$router.push('/');
             } catch (error) {
