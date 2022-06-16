@@ -25,11 +25,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </base-alert>
-            <div class="container py-0">
+            <div class="container shape-container d-flex">
                 <div class="row justify-content-center">
                     <div class="row"></div>
-                    <div class="col-lg-6 order-lg-1">
-                        <h4 class="display-3 text-white">Agregar Nuevo Voluntariado</h4>
+                    <div class="col-lg-7 order-lg-1">
+                        <center><h4 class="display-3 text-white">Agregar Nuevo Voluntariado</h4></center>
                         <p class="text-white">A continuación, te presentamos un formato para crear una nueva
                             publicación sobre un voluntariado que vas a realizar. Por favor, llena todos
                             los campos.
@@ -58,6 +58,83 @@
                                     }" class="form-control datepicker" v-model="dates.range" required>
                                     </flat-picker>
                                 </base-input>
+                            </div>
+
+                            <div class="form-group">
+                                <h5 for="inputTag" class="text-white">Selecciona el tema que más se ajuste a la sesión
+                                </h5>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputTag">Tags</label>
+                                    </div>
+                                    <select class="custom-select" id="inputTag" v-model="etiqueta" required>
+                                        <option value="1">Animales</option>
+                                        <option value="2">Arte y cultura</option>
+                                        <option value="3">Deportes y actividades recreativas</option>
+                                        <option value="4">Educación y alfabetización</option>
+                                        <option value="5">Hambre</option>
+                                        <option value="6">Informática y tecnología</option>
+                                        <option value="7">Inmigrantes y refugiados</option>
+                                        <option value="8">Internacional</option>
+                                        <option value="9">Justicia y Legalidad</option>
+                                        <option value="10">LGBTQ+</option>
+                                        <option value="11">Medio ambiente</option>
+                                        <option value="12">Medios de comunicación y radiodifusión</option>
+                                        <option value="13">Mujeres</option>
+                                        <option value="14">Niños y jóvenes</option>
+                                        <option value="15">Personas con discapacidad</option>
+                                        <option value="16">Personas mayores</option>
+                                        <option value="17">Personas sin hogar y vivienda</option>
+                                        <option value="18">Raza y etnia</option>
+                                        <option value="19">Salud y medicina</option>
+                                        <option value="20">Veteranos y familias de militares</option>
+                                        <option value="21">Otra</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h5 for="inputCity" class="text-white">Selecciona la ciudad en dónde se realizará la sesión
+                                </h5>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputCity">Ciudad</label>
+                                    </div>
+                                    <select class="custom-select" id="inputCity" v-model="city" required>
+                                        <option value="1">Arauca</option>
+                                        <option value="2">Armenia</option>
+                                        <option value="3">Barranquilla</option>
+                                        <option value="4">Bogotá D.C.</option>
+                                        <option value="5">Bucaramanga</option>
+                                        <option value="6">Cali</option>
+                                        <option value="7">Cartagena</option>
+                                        <option value="8">Cúcuta</option>
+                                        <option value="9">Florencia</option>
+                                        <option value="10">Ibagué</option>
+                                        <option value="11">Leticia</option>
+                                        <option value="12">Manizales</option>
+                                        <option value="13">Medellín</option>
+                                        <option value="14">Mitú</option>
+                                        <option value="15">Mocoa</option>
+                                        <option value="16">Montería</option>
+                                        <option value="17">Neiva</option>
+                                        <option value="18">Pasto</option>
+                                        <option value="19">Pereira</option>
+                                        <option value="20">Popayán</option>
+                                        <option value="21">Puerto Carreño</option>
+                                        <option value="22">Puerto Inírida</option>
+                                        <option value="23">Quibdó</option>
+                                        <option value="24">Riohacha</option>
+                                        <option value="25">San Andrés</option>
+                                        <option value="26">San José Del Guaviare</option>
+                                        <option value="27">Santa Marta</option>
+                                        <option value="28">Sincelejo</option>
+                                        <option value="29">Tunja</option>
+                                        <option value="30">Valledupar</option>
+                                        <option value="31">Villavicencio</option>
+                                        <option value="32">Yopal</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary" id="btnCrearSesion">¡Crear Sesión!</button>
@@ -92,7 +169,9 @@ export default {
             fechaSesion: "",
             organizacion: 1,
             errorCrearSesion: false,
-            creacionExitosa: false
+            creacionExitosa: false,
+            etiqueta: "Animales",
+            city: "Arauca",
         };
     },
     methods: {
@@ -107,12 +186,13 @@ export default {
                     "end_time": this.dates.range.slice(31, 36),
                     "description": this.descripcionSesion,
                     "organization": 1,
-                    "volunteer": [1]
+                    "volunteer": [1],
+                    "category": this.etiqueta,
                 };
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.post("http://localhost:8000/api/sessions/create-session", dataSession, {headers});
+                let response = await axios.post("http://localhost:8000/api/sessions/create-session", dataSession, { headers });
                 this.creacionExitosa = true;
                 this.nombreSesion = "";
                 this.descripcionSesion = "";
@@ -122,6 +202,14 @@ export default {
             }
 
         },
+        checkLogin() {
+            if (!localStorage.getItem('token')) {
+                this.$router.push('/login');
+            }
+        }
+    },
+    mounted() {
+        this.checkLogin();
     },
     components: {
         BaseNav,
