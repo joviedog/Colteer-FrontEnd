@@ -65,6 +65,7 @@ export default {
                 };
                 await axios.post("http://localhost:8000/api/auth/logout", {}, { headers });
                 localStorage.removeItem('token');
+                localStorage.removeItem('user_type');
                 this.$router.push('/');
             } catch (error) {
                 console.log(error.response.data);

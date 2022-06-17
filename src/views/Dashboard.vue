@@ -50,6 +50,12 @@
                                             <h6 class="text-primary text-uppercase">{{ item.name }}</h6>
                                             <p class="description mt-3">{{ item.description }}</p>
                                             <div>
+                                                <badge type="primary" rounded>{{ "Etiqueta: " +
+                                                        dictCiudades[item.category]
+                                                }}
+                                                </badge>
+                                                <badge type="primary" rounded>{{ "Ubicación: " + item.location }}
+                                                </badge>
                                                 <badge type="primary" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
                                                 </badge>
                                                 <badge type="primary" rounded>{{ "Hora Inicio: " + item.start_time }}
@@ -69,6 +75,12 @@
                                             <h6 class="text-success text-uppercase">{{ item.name }}</h6>
                                             <p class="description mt-3">{{ item.description }}</p>
                                             <div>
+                                                <badge type="success" rounded>{{ "Etiqueta: " +
+                                                        dictCiudades[item.category]
+                                                }}
+                                                </badge>
+                                                <badge type="success" rounded>{{ "Ubicación: " + item.location }}
+                                                </badge>
                                                 <badge type="success" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
                                                 </badge>
                                                 <badge type="success" rounded>{{ "Hora Inicio: " + item.start_time }}
@@ -88,6 +100,12 @@
                                             <h6 class="text-warning text-uppercase">{{ item.name }}</h6>
                                             <p class="description mt-3">{{ item.description }}</p>
                                             <div>
+                                                <badge type="warning" rounded>{{ "Etiqueta: " +
+                                                        dictCiudades[item.category]
+                                                }}
+                                                </badge>
+                                                <badge type="warning" rounded>{{ "Ubicación: " + item.location }}
+                                                </badge>
                                                 <badge type="warning" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
                                                 </badge>
                                                 <badge type="warning" rounded>{{ "Hora Inicio: " + item.start_time }}
@@ -158,7 +176,29 @@ export default {
         return {
             aux: localStorage.getItem('token'),
             sessions: [],
-            n: 0
+            n: 0,
+            dictCiudades: {
+                "1": "Animales",
+                "2": "Arte y cultura",
+                "3": "Deportes y actividades recreativas",
+                "4": "Educación y alfabetización",
+                "5": "Hambre",
+                "6": "Informática y tecnología",
+                "7": "Inmigrantes y refugiados",
+                "8": "Internacional",
+                "9": "Justicia y Legalidad",
+                "10": "LGBTQ+",
+                "11": "Medio ambiente",
+                "12": "Medios de comunicación y radiodifusión",
+                "13": "Mujeres",
+                "14": "Niños y jóvenes",
+                "15": "Personas con discapacidad",
+                "16": "Personas mayores",
+                "17": "Personas sin hogar y vivienda",
+                "18": "Raza y etnia",
+                "19": "Salud y medicina",
+                "20": "Veteranos y familias de militares",
+            }
         };
     },
     methods: {

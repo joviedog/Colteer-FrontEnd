@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div v-if="(aux != undefined)">
         <section class="section section section-shaped my-0 overflow-hidden">
-            <div class="shape shape-style-1 bg-gradient-warning">
+            <div class="shape shape-style-1 bg-gradient-info">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -88,7 +88,6 @@
                                         <option value="18">Raza y etnia</option>
                                         <option value="19">Salud y medicina</option>
                                         <option value="20">Veteranos y familias de militares</option>
-                                        <option value="21">Otra</option>
                                     </select>
                                 </div>
                             </div>
@@ -101,38 +100,38 @@
                                         <label class="input-group-text" for="inputCity">Ciudad</label>
                                     </div>
                                     <select class="custom-select" id="inputCity" v-model="city" required>
-                                        <option value="1">Arauca</option>
-                                        <option value="2">Armenia</option>
-                                        <option value="3">Barranquilla</option>
-                                        <option value="4">Bogotá D.C.</option>
-                                        <option value="5">Bucaramanga</option>
-                                        <option value="6">Cali</option>
-                                        <option value="7">Cartagena</option>
-                                        <option value="8">Cúcuta</option>
-                                        <option value="9">Florencia</option>
-                                        <option value="10">Ibagué</option>
-                                        <option value="11">Leticia</option>
-                                        <option value="12">Manizales</option>
-                                        <option value="13">Medellín</option>
-                                        <option value="14">Mitú</option>
-                                        <option value="15">Mocoa</option>
-                                        <option value="16">Montería</option>
-                                        <option value="17">Neiva</option>
-                                        <option value="18">Pasto</option>
-                                        <option value="19">Pereira</option>
-                                        <option value="20">Popayán</option>
-                                        <option value="21">Puerto Carreño</option>
-                                        <option value="22">Puerto Inírida</option>
-                                        <option value="23">Quibdó</option>
-                                        <option value="24">Riohacha</option>
-                                        <option value="25">San Andrés</option>
-                                        <option value="26">San José Del Guaviare</option>
-                                        <option value="27">Santa Marta</option>
-                                        <option value="28">Sincelejo</option>
-                                        <option value="29">Tunja</option>
-                                        <option value="30">Valledupar</option>
-                                        <option value="31">Villavicencio</option>
-                                        <option value="32">Yopal</option>
+                                        <option value="Arauca">Arauca</option>
+                                        <option value="Armenia">Armenia</option>
+                                        <option value="Barranquilla">Barranquilla</option>
+                                        <option value="Bogotá D.C.">Bogotá D.C.</option>
+                                        <option value="Bucaramanga">Bucaramanga</option>
+                                        <option value="Cali">Cali</option>
+                                        <option value="Cartagena">Cartagena</option>
+                                        <option value="Cúcuta">Cúcuta</option>
+                                        <option value="Florencia">Florencia</option>
+                                        <option value="Ibagué">Ibagué</option>
+                                        <option value="Leticia">Leticia</option>
+                                        <option value="Manizales">Manizales</option>
+                                        <option value="Medellín">Medellín</option>
+                                        <option value="Mitú">Mitú</option>
+                                        <option value="Mocoa">Mocoa</option>
+                                        <option value="Montería">Montería</option>
+                                        <option value="Neiva">Neiva</option>
+                                        <option value="Pasto">Pasto</option>
+                                        <option value="Pereira">Pereira</option>
+                                        <option value="Popayán">Popayán</option>
+                                        <option value="Puerto Carreño">Puerto Carreño</option>
+                                        <option value="Puerto Inírida">Puerto Inírida</option>
+                                        <option value="Quibdó">Quibdó</option>
+                                        <option value="Riohacha">Riohacha</option>
+                                        <option value="San Andrés">San Andrés</option>
+                                        <option value="San José Del Guaviare">San José Del Guaviare</option>
+                                        <option value="Santa Marta">Santa Marta</option>
+                                        <option value="Sincelejo">Sincelejo</option>
+                                        <option value="Tunja">Tunja</option>
+                                        <option value="Valledupar">Valledupar</option>
+                                        <option value="Villavicencio">Villavicencio</option>
+                                        <option value="Yopal">Yopal</option>
                                     </select>
                                 </div>
                             </div>
@@ -161,6 +160,7 @@ fechaPost.setDate(fechaPost.getDate() + 1);
 export default {
     data() {
         return {
+            aux: localStorage.getItem('token'),
             dates: {
                 range: fechaActual.toISOString().split('T')[0] + " to " + fechaPost.toISOString().split('T')[0]
             },
@@ -171,7 +171,7 @@ export default {
             errorCrearSesion: false,
             creacionExitosa: false,
             etiqueta: "Animales",
-            city: "Arauca",
+            city: "",
         };
     },
     methods: {
@@ -185,9 +185,9 @@ export default {
                     "start_time": this.dates.range.slice(11, 16),
                     "end_time": this.dates.range.slice(31, 36),
                     "description": this.descripcionSesion,
-                    "organization": 1,
-                    "volunteer": [1],
+                    "volunteer": [],
                     "category": this.etiqueta,
+                    "location": this.city,
                 };
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
