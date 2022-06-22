@@ -18,8 +18,8 @@
                 </div>
 
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-                    <li class="nav-item">
-                        <base-button tag="a" type="secondary" href="#/statistics" role="button"
+                    <li class="nav-item" v-if="(user_type == 'Organization')">
+                        <base-button tag="a" type="secondary" href="#/stats" role="button"
                             icon="ni ni-chart-bar-32" iconOnly></base-button>
                     </li>
                     <li class="nav-item d-none d-lg-block ml-lg-4">
@@ -31,6 +31,7 @@
                             <a class="dropdown-item" href="#/dashboard">Ver Sesiones</a>
                             <a class="dropdown-item" href="#/profile">Ver Información</a>
                             <a class="dropdown-item" href="#/addVolunteering" v-if="(user_type == 'Organization')">Añadir Sesión Voluntariado</a>
+                            <a class="dropdown-item" href="#/turn" v-if="(user_type == 'Organization')">Agregar Turno a Sesión</a>
                             <a class="dropdown-item" href="#/volunteerSearch">Buscar Voluntariado</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" type="button" v-on:click="cerrarSesion"

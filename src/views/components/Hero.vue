@@ -17,7 +17,7 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-7 text-center pt-lg">
                         <img src="img/logos/logo_transparent.png" style="width: 250px;" class="img-fluid">
-                        <p class="lead text-white mt-4 mb-5">"Mucha genete pequeña, en lugares pequeños, haciendo cosas pequeñas,
+                        <p class="lead text-white mt-4 mb-5">"Mucha gente pequeña, en lugares pequeños, haciendo cosas pequeñas,
                             puede cambiar el mundo". - Eduardo Galeano
                         </p>
                     </div>

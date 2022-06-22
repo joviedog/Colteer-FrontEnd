@@ -87,6 +87,13 @@ export default {
             }
 
         },
+        checkLogin() {
+            if(localStorage.getItem('token') && localStorage.getItem('user_type'))
+                this.$router.push('/dashboard');
+        }
+    },
+    mounted() {
+        this.checkLogin();
     }
 };
 </script>

@@ -29,7 +29,9 @@
                 <div class="row justify-content-center">
                     <div class="row"></div>
                     <div class="col-lg-7 order-lg-1">
-                        <center><h4 class="display-3 text-white">Agregar Nuevo Voluntariado</h4></center>
+                        <center>
+                            <h4 class="display-3 text-white">Agregar Nuevo Voluntariado</h4>
+                        </center>
                         <p class="text-white">A continuación, te presentamos un formato para crear una nueva
                             publicación sobre un voluntariado que vas a realizar. Por favor, llena todos
                             los campos.
@@ -93,7 +95,8 @@
                             </div>
 
                             <div class="form-group">
-                                <h5 for="inputCity" class="text-white">Selecciona la ciudad en dónde se realizará la sesión
+                                <h5 for="inputCity" class="text-white">Selecciona la ciudad en dónde se realizará la
+                                    sesión
                                 </h5>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">

@@ -21,15 +21,18 @@ import router from "./router";
 import Argon from "./plugins/argon-kit";
 import './registerServiceWorker';
 import axios from "axios";
-import VueAxios from "vue-axios";
 import VueSweetalert2 from 'vue-sweetalert2';
+import BootstrapVue from 'bootstrap-vue';
 
 var token = localStorage.getItem('token');
 if(token)
     axios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
 Vue.config.productionTip = false;
-Vue.use(Argon, axios, VueAxios, VueSweetalert2);
+Vue.use(Argon);
+Vue.use(VueSweetalert2);
+Vue.use(BootstrapVue);
+
 new Vue({
   router,
   render: h => h(App)

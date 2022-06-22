@@ -171,12 +171,9 @@ import Swal from 'sweetalert2';
 
 export default {
     data() {
-
-        console.log(localStorage.getItem('token'));
         return {
             aux: localStorage.getItem('token'),
             sessions: [],
-            n: 0,
             dictCiudades: {
                 "1": "Animales",
                 "2": "Arte y cultura",
@@ -209,7 +206,6 @@ export default {
                 };
                 let response = await axios.get("http://localhost:8000/api/sessions/", { headers });
                 this.sessions = response.data;
-                this.n = this.sessions.length;
             } catch (error) {
                 console.log(error);
 
@@ -224,6 +220,10 @@ export default {
                         idSession = this.sessions[i].id;
                     }
                 }
+
+                if(idSession == -1)
+                    throw "Error";
+
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };

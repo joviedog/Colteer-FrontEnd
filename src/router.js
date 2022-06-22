@@ -11,7 +11,8 @@ import Dashboard from "./views/Dashboard.vue";
 import HeaderDashboard from "./views/HeaderDashboard.vue"
 import AddVolunteering from "./views/AddVolunteering.vue";
 import VolunteerSearch from "./views/VolunteerSearch.vue";
-import Statistics from "./views/Statistics.vue";
+import Stats from "./views/Stats.vue";
+import Turn from "./views/Turn.vue";
 
 Vue.use(Router);
 
@@ -91,11 +92,20 @@ export default new Router({
       }
     },
     {
-      path: "/statistics",
-      name: "statistics",
+      path: "/stats",
+      name: "stats",
       components: {
         header: HeaderDashboard,
-        default: Statistics,
+        default: Stats,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/turn",
+      name: "turns",
+      components: {
+        header: HeaderDashboard,
+        default: Turn,
         footer: AppFooter
       }
     }
