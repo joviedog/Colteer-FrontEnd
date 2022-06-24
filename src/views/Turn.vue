@@ -33,7 +33,7 @@
                             <b-form-group label="Seleccione la hora de inicio" label-for="name-input">
                                 <base-input addon-left-icon="ni ni-calendar-grid-58">
                                     <flat-picker slot-scope="{focus, blur}" @on-open="focus" @on-close="blur"
-                                        :config="{ allowInput: true, enableTime: true, noCalendar: true }"
+                                        :config="{ allowInput: true, enableTime: true, noCalendar: true, time_24hr: true }"
                                         class="form-control datepicker" v-model="starTime.simple">
                                     </flat-picker>
                                 </base-input>
@@ -41,7 +41,7 @@
                             <b-form-group label="Seleccione la hora de finalización" label-for="name-input">
                                 <base-input addon-left-icon="ni ni-calendar-grid-58">
                                     <flat-picker slot-scope="{focus, blur}" @on-open="focus" @on-close="blur"
-                                        :config="{ allowInput: true, enableTime: true, noCalendar: true }"
+                                        :config="{ allowInput: true, enableTime: true, noCalendar: true, time_24hr: true }"
                                         class="form-control datepicker" v-model="endTime.simple">
                                     </flat-picker>
                                 </base-input>
@@ -106,6 +106,7 @@
 import axios from "axios";
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+import Swal from 'sweetalert2';
 
 let fechaActual = new Date();
 export default {
@@ -149,26 +150,41 @@ export default {
         },
         openModal(idSession) {
             this.modalShow = !this.modalShow;
-            this.createTurn(idSession);
+            this.idSession = idSession;
         },
         resetModal() {
             this.cuposDisponibles = 1;
             this.cuposLlenos = 1;
         },
-        async createTurn(idSession) {
-            try {/*
+        async createTurn() {
+            try {
                 let dataTurn = {
-
+                    "available": this.cuposDisponibles,
+                    "full": this.cuposLlenos,
+                    "start_time": this.starTime.simple + ":00",
+                    "end_time": this.endTime.simple + ":00",
                 };
 
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
 
-                let response = await axios.post("http://localhost:8000/api/sessions/session/" + idSession +
+                let response = await axios.post("http://localhost:8000/api/sessions/session/" + this.idSession +
                     "/create-turn", dataTurn, { headers });
-                this.sessions = response.data;*/
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Bien Hecho',
+                    text: 'Se ha creado el turno correctamente',
+                    timer: 2500
+                })
             } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '¡Ha ocurrido un error!',
+                    footer: 'Por favor, vuelve a intentarlo'
+                })
                 console.log(error);
 
             }
