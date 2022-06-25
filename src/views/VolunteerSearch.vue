@@ -20,8 +20,38 @@
                             <div class="col px-0">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <h1 class="display-3  text-white">Lista de voluntarios</h1>  
+                                        <h1 class="display-3  text-white">Lista de voluntariados</h1>  
+                                        <div>
+                                        <b-dropdown id="dropdown-1" dropright text="Tema de las Sesiones de voluntariado" variant="success" class="m-2">
+                                            <b-dropdown-item href="#" value="0">Todos</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="1">Animales</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="2">Arte y cultura</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="3">Deportes y actividades recreativas</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="4">Educación y alfabetización</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="5">Hambre</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="6">Informática y tecnología</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="7">Inmigrantes y refugiados</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="8">Internacional</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="9">Justicia y Legalidad</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="10">LGBTQ+</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="11">Medio ambiente</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="12">Medios de comunicación y radiodifusión</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="13">Mujeres</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="14">Niños y jóvenes</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="15">Personas con discapacidad</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="16">Personas mayores</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="17">Personas sin hogar y vivienda</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="18">Raza y etnia</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="19">Salud y medicina</b-dropdown-item>
+                                            <b-dropdown-item href="#" value="20">Veteranos y familias de militares</b-dropdown-item>
+                                            
+
+                                            <b-dropdown-divider></b-dropdown-divider>
+                                            
+                                        </b-dropdown>
                                     </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -32,37 +62,96 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
-                                <div class="row row-grid">
-                                    <div class="container">
-                                        <table class="table table-hover table-dark">
-                                            <thead>
-                                                <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Correo</th>
-                                                <th scope="col">Documento</th>
-                                                <th scope="col">Telefono</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr v-for="voluntario in this.dataVolunteersearch" :key="voluntario.aux">
-                                                    <th scope="row"></th>
-                                                    <td>{{dataVolunteersearch.name}}</td>
-                                                    <td>{{dataVolunteersearch.email}}</td>
-                                                    <td>{{dataVolunteersearch.document}}</td>
-                                                    <td>{{dataVolunteersearch.phone}}</td>
-                                                </tr>
-                                                
-                                            </tbody>
-                                            </table>
+
+                                    
+
+
+                                <div class="row row-grid" v-for="(item, index) in this.sessions" :key="index">
+                                    <div class="col-lg-8" v-if="index % 3 === 0">
+                                        <card class="border-0" hover shadow body-classes="py-5">
+                                            <icon name="ni ni-check-bold" type="primary" rounded class="mb-4">
+                                            </icon>
+                                            <h6 class="text-primary text-uppercase">{{ item.name }}</h6>
+                                            <p class="description mt-3">{{ item.description }}</p>
+                                            <div>
+                                                <badge type="primary" rounded>{{ "Etiqueta: " +
+                                                        categorias[item.category]
+                                                }}
+                                                </badge>
+                                                <badge type="primary" rounded>{{ "Ubicación: " + item.location }}
+                                                </badge>
+                                                <badge type="primary" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
+                                                </badge>
+                                                <badge type="primary" rounded>{{ "Hora Inicio: " + item.start_time }}
+                                                </badge>
+                                                <badge type="primary" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
+                                            </div>
+                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="primary"
+                                                class="mt-4">
+                                                ¡Inscríbete!
+                                            </base-button>
+                                        </card>
+                                    </div>
+                                    <div class="col-lg-8" v-if="index % 3 === 1">
+                                        <card class="border-0" hover shadow body-classes="py-5">
+                                            <icon name="ni ni-istanbul" type="success" rounded class="mb-4">
+                                            </icon>
+                                            <h6 class="text-success text-uppercase">{{ item.name }}</h6>
+                                            <p class="description mt-3">{{ item.description }}</p>
+                                            <div>
+                                                <badge type="success" rounded>{{ "Etiqueta: " +
+                                                        categorias[item.category]
+                                                }}
+                                                </badge>
+                                                <badge type="success" rounded>{{ "Ubicación: " + item.location }}
+                                                </badge>
+                                                <badge type="success" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
+                                                </badge>
+                                                <badge type="success" rounded>{{ "Hora Inicio: " + item.start_time }}
+                                                </badge>
+                                                <badge type="success" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
+                                            </div>
+                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="success"
+                                                class="mt-4">
+                                                ¡Inscríbete!
+                                            </base-button>
+                                        </card>
+                                    </div>
+                                    <div class="col-lg-8" v-if="index % 3 === 2">
+                                        <card class="border-0" hover shadow body-classes="py-5">
+                                            <icon name="ni ni-planet" type="warning" rounded class="mb-4">
+                                            </icon>
+                                            <h6 class="text-warning text-uppercase">{{ item.name }}</h6>
+                                            <p class="description mt-3">{{ item.description }}</p>
+                                            <div>
+                                                <badge type="warning" rounded>{{ "Etiqueta: " +
+                                                        categorias[item.category]
+                                                }}
+                                                </badge>
+                                                <badge type="warning" rounded>{{ "Ubicación: " + item.location }}
+                                                </badge>
+                                                <badge type="warning" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
+                                                </badge>
+                                                <badge type="warning" rounded>{{ "Hora Inicio: " + item.start_time }}
+                                                </badge>
+                                                <badge type="warning" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
+                                            </div>
+                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="warning"
+                                                class="mt-4">
+                                                ¡Inscríbete!
+                                            </base-button>
+                                        </card>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
+
+
         <div v-else>
             <div>
                 <div class="position-relative">
@@ -101,17 +190,55 @@
 </template>
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 
 export default {
     data() {
         return {
             aux: localStorage.getItem('token'),
+            sessions: [],
             dataVolunteersearch:{},
+            categorias: {
+                "1": "Animales",
+                "2": "Arte y cultura",
+                "3": "Deportes y actividades recreativas",
+                "4": "Educación y alfabetización",
+                "5": "Hambre",
+                "6": "Informática y tecnología",
+                "7": "Inmigrantes y refugiados",
+                "8": "Internacional",
+                "9": "Justicia y Legalidad",
+                "10": "LGBTQ+",
+                "11": "Medio ambiente",
+                "12": "Medios de comunicación y radiodifusión",
+                "13": "Mujeres",
+                "14": "Niños y jóvenes",
+                "15": "Personas con discapacidad",
+                "16": "Personas mayores",
+                "17": "Personas sin hogar y vivienda",
+                "18": "Raza y etnia",
+                "19": "Salud y medicina",
+                "20": "Veteranos y familias de militares",
+            }
         };
     },
 
     methods:{
+        async getVoluntariados() {
+            try {
+                const headers = {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                let response = await axios.get("http://localhost:8000/api/sessions/", { headers });
+                this.sessions = response.data;
+            } catch (error) {
+                console.log(error);
+
+            }
+
+        },
+
         async getVolunteerSearch(){
             try {
                 const headers={
@@ -124,11 +251,33 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+        },
+
+        async NombreSesion(nameSession) {
+            try {
+                var idSession = -1;
+                for (var i = 0; i < this.sessions.length; i++) {
+                    if (this.sessions[i].name == nameSession) {
+                        idSession = this.sessions[i].id;
+                    }
+                }
+
+                if(idSession == -1)
+                    throw "Error";
+
+                const headers = {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                const url = "http://localhost:8000/api/sessions/session/" + String(idSession);
+                let response = await axios.post(url, {}, { headers });
+            } catch (error) {
+                console.log(error);
+            }
         }
     },
     mounted(){
         if(localStorage.getItem('token')){
-            this.getVolunteerSearch();
+            this.getVoluntariados();
         }else{
             this.$router.push("/login")
         }

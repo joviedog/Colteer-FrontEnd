@@ -137,7 +137,21 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+        },
+        async DeleteVolunteer(){
+            try {
+                const headers={
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                let response = await axios.delete("http://localhost:8000/api/auth/volunteer", {headers});
+                console.log(response.data);
+                this.dataVolunteersearch = response.data;
+
+            } catch (error) {
+                console.log(error);
+            }
         }
+
     },
     mounted(){
         if(localStorage.getItem('token')){
