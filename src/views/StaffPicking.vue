@@ -20,7 +20,10 @@
                             <div class="col px-0">
                                 <div class="row">
                                     <div class="col-lg-6">
+                                        
+                                        <b-icon icon="x-circle" scale="2" variant="danger"></b-icon>
                                         <h1 class="display-3  text-white">Lista de voluntarios</h1>  
+                                        <b-icon icon="x-circle" scale="2" variant="danger"></b-icon>
                                     </div>
                                 </div>
                             </div>
