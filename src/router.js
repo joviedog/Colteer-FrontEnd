@@ -118,7 +118,16 @@ export default new Router({
         default: StaffPicking,
         footer: AppFooter
       }
-    }
+    },
+    {
+      path: "/donations",
+      name: "donations",
+      components: {
+        header: HeaderDashboard,
+        default: Donations,
+        footer: AppFooter
+      }  
+    }    
   ],
   scrollBehavior: to => {
     if (to.hash) {
