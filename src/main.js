@@ -23,6 +23,8 @@ import './registerServiceWorker';
 import axios from "axios";
 import VueSweetalert2 from 'vue-sweetalert2';
 import BootstrapVue from 'bootstrap-vue';
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 
 var token = localStorage.getItem('token');
 if(token)
@@ -32,6 +34,7 @@ Vue.config.productionTip = false;
 Vue.use(Argon);
 Vue.use(VueSweetalert2);
 Vue.use(BootstrapVue);
+Vue.use(ElementUI);
 
 new Vue({
   router,

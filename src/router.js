@@ -11,6 +11,7 @@ import Dashboard from "./views/Dashboard.vue";
 import HeaderDashboard from "./views/HeaderDashboard.vue"
 import AddVolunteering from "./views/AddVolunteering.vue";
 import VolunteerSearch from "./views/VolunteerSearch.vue";
+import Donations from "./views/Donations.vue";
 import Stats from "./views/Stats.vue";
 import Turn from "./views/Turn.vue";
 import StaffPicking from "./views/StaffPicking.vue";
