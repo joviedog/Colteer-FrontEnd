@@ -33,6 +33,7 @@
                             <a class="dropdown-item" href="#/addVolunteering" v-if="(user_type == 'Organization')">Añadir Sesión Voluntariado</a>
                             <a class="dropdown-item" href="#/turn" v-if="(user_type == 'Organization')">Agregar Turno a Sesión</a>
                             <a class="dropdown-item" href="#/volunteerSearch">Buscar Voluntariado</a>
+                            <a class="dropdown-item" href="#/staffPicking">Lista de Voluntarios</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" type="button" v-on:click="cerrarSesion"
                                 style="cursor: pointer">Cerrar Sesión</a>

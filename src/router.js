@@ -13,6 +13,7 @@ import AddVolunteering from "./views/AddVolunteering.vue";
 import VolunteerSearch from "./views/VolunteerSearch.vue";
 import Stats from "./views/Stats.vue";
 import Turn from "./views/Turn.vue";
+import StaffPicking from "./views/StaffPicking.vue";
 
 Vue.use(Router);
 
@@ -106,6 +107,15 @@ export default new Router({
       components: {
         header: HeaderDashboard,
         default: Turn,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/staffPicking",
+      name: "staffPicking",
+      components: {
+        header: HeaderDashboard,
+        default: StaffPicking,
         footer: AppFooter
       }
     }
