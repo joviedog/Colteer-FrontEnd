@@ -239,15 +239,23 @@ export default {
 
         },
 
-        async getVolunteerSearch(){
+        async SessionCategory(nameSession){
             try {
-                const headers={
+                var idSession = -1;
+                for (var i = 0; i < this.sessions.length; i++) {
+                    if (this.sessions[i].name == nameSession) {
+                        idSession = this.sessions[i].id;
+                    }
+                }
+
+                if(idSession == -1)
+                    throw "Error";
+
+                const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/auth/volunteer", {headers});
-                console.log(response.data);
-                this.dataVolunteersearch = response.data;
-
+                const url = "http://localhost:8000/api/search/sessions/by_category";
+                let response = await axios.post(url, {}, { headers });
             } catch (error) {
                 console.log(error);
             }
@@ -268,12 +276,57 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                const url = "http://localhost:8000/api/sessions/session/" + String(idSession);
+                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/register-volunteer";
                 let response = await axios.post(url, {}, { headers });
             } catch (error) {
                 console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo ha ido mal, Por favor, vuelve a intentarlo'
+                })
             }
-        }
+
+        },
+
+        comprobarInscripcion(nameSession) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: '¿Estás seguro que te quieres inscribir a esta sesión?',
+                text: "Recuerda que la sesión a la que quieres aplicar es: " + nameSession,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: '¡Si, quiero aplicar!',
+                cancelButtonText: 'No, lo pensaré',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.inscribirseSesion(nameSession);
+                    swalWithBootstrapButtons.fire(
+                        'Todo Listo',
+                        'Te has inscrito correctamente a esta sesión. Gracias.',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Inscripción Cancelada',
+                        'Recuerda que puedes volver a inscribirte cuando quieras :)',
+                        'error'
+                    )
+                }
+            })
+
+        },
     },
     mounted(){
         if(localStorage.getItem('token')){

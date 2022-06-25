@@ -23,7 +23,7 @@
                                         
                                         <b-icon icon="x-circle" scale="2" variant="danger"></b-icon>
                                         <h1 class="display-3  text-white">Lista de voluntarios</h1>  
-                                        <b-icon icon="x-circle" scale="2" variant="danger"></b-icon>
+                                                              
                                     </div>
                                 </div>
                             </div>
@@ -45,15 +45,18 @@
                                                 <th scope="col">Correo</th>
                                                 <th scope="col">Documento</th>
                                                 <th scope="col">Telefono</th>
+                                                
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="voluntario in this.dataVolunteersearch" :key="voluntario.aux">
+                                                <tr v-for="idVolunteer in this.dataVolunteersearch" :key="idVolunteer.aux">
                                                     <th scope="row"></th>
                                                     <td>{{dataVolunteersearch.name}}</td>
                                                     <td>{{dataVolunteersearch.email}}</td>
                                                     <td>{{dataVolunteersearch.document}}</td>
                                                     <td>{{dataVolunteersearch.phone}}</td>
+                                                    <td><b-button variant="success"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
+                                                    <td><b-button variant="danger"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
                                                 </tr>
                                                 
                                             </tbody>
@@ -115,12 +118,12 @@ export default {
     },
 
     methods:{
-        async getSession() {
+        async getVoluntariados() {
             try {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/sessions/", { headers });
+                let response = await axios.get("http://localhost:8000/api/sessions/session", { headers });
                 this.sessions = response.data;
             } catch (error) {
                 console.log(error);
@@ -128,25 +131,57 @@ export default {
             }
 
         },
+
+        async approveVolunteer(nameSession) {
+            try {
+                var idSession = -1;
+                for (var i = 0; i < this.sessions.length; i++) {
+                    if (this.sessions[i].name == nameSession) {
+                        idSession = this.sessions[i].id;
+                    }
+                }
+
+                if(idSession == -1)
+                    throw "Error";
+
+                const headers = {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/approve-volunteer/"+String(idVolunteer);
+                let response = await axios.post(url, {}, { headers });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        async rejectVolunteer(nameSession) {
+            try {
+                var idSession = -1;
+                for (var i = 0; i < this.sessions.length; i++) {
+                    if (this.sessions[i].name == nameSession) {
+                        idSession = this.sessions[i].id;
+                    }
+                }
+
+                if(idSession == -1)
+                    throw "Error";
+
+                const headers = {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                };
+                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/reject-volunteer/"+String(idVolunteer);
+                let response = await axios.post(url, {}, { headers });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         async getVolunteerSearch(){
             try {
                 const headers={
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
                 let response = await axios.get("http://localhost:8000/api/auth/volunteer", {headers});
-                console.log(response.data);
-                this.dataVolunteersearch = response.data;
-
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        async DeleteVolunteer(){
-            try {
-                const headers={
-                    'Authorization': 'Token ' + localStorage.getItem('token')
-                };
-                let response = await axios.delete("http://localhost:8000/api/auth/volunteer", {headers});
                 console.log(response.data);
                 this.dataVolunteersearch = response.data;
 
