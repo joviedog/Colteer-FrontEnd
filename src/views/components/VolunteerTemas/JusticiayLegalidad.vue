@@ -20,10 +20,10 @@
                             <div class="col px-0">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <h1 class="display-3  text-white">Lista de voluntariados</h1>  
+                                        <h1 class="display-3  text-white">Lista de voluntariados con tema Justicia y Legalidad</h1>  
                                         <div>
                                         <b-dropdown id="dropdown-1" dropright text="Tema de las Sesiones de voluntariado" variant="success" class="m-2">
-                                            <b-dropdown-item href="#" value="0">Todos</b-dropdown-item>
+                                            <b-dropdown-item href="#/volunteerSearch" value="0">Todos</b-dropdown-item>
                                             <b-dropdown-item href="#/animales" value="1">Animales</b-dropdown-item>
                                             <b-dropdown-item href="#/arteycultura" value="2">Arte y cultura</b-dropdown-item>
                                             <b-dropdown-item href="#/deportesyactividadesrecreativas" value="3">Deportes y actividades recreativas</b-dropdown-item>
@@ -65,7 +65,9 @@
                             <div class="col-lg-12">
 
                                 <div class="row row-grid" v-for="(item, index) in this.sessions" :key="index">
-                                    <div class="col-lg-8" v-if="index % 3 === 0">
+
+                                    <div class="col-lg-8" v-if="categorias[item.category]==='Justicia y Legalidad'">
+
                                         <card class="border-0" hover shadow body-classes="py-5">
                                             <icon name="ni ni-check-bold" type="primary" rounded class="mb-4">
                                             </icon>
@@ -90,56 +92,7 @@
                                             </base-button>
                                         </card>
                                     </div>
-                                    <div class="col-lg-8" v-if="index % 3 === 1">
-                                        <card class="border-0" hover shadow body-classes="py-5">
-                                            <icon name="ni ni-istanbul" type="success" rounded class="mb-4">
-                                            </icon>
-                                            <h6 class="text-success text-uppercase">{{ item.name }}</h6>
-                                            <p class="description mt-3">{{ item.description }}</p>
-                                            <div>
-                                                <badge type="success" rounded>{{ "Etiqueta: " +
-                                                        categorias[item.category]
-                                                }}
-                                                </badge>
-                                                <badge type="success" rounded>{{ "Ubicación: " + item.location }}
-                                                </badge>
-                                                <badge type="success" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
-                                                </badge>
-                                                <badge type="success" rounded>{{ "Hora Inicio: " + item.start_time }}
-                                                </badge>
-                                                <badge type="success" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
-                                            </div>
-                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="success"
-                                                class="mt-4">
-                                                ¡Inscríbete!
-                                            </base-button>
-                                        </card>
-                                    </div>
-                                    <div class="col-lg-8" v-if="index % 3 === 2">
-                                        <card class="border-0" hover shadow body-classes="py-5">
-                                            <icon name="ni ni-planet" type="warning" rounded class="mb-4">
-                                            </icon>
-                                            <h6 class="text-warning text-uppercase">{{ item.name }}</h6>
-                                            <p class="description mt-3">{{ item.description }}</p>
-                                            <div>
-                                                <badge type="warning" rounded>{{ "Etiqueta: " +
-                                                        categorias[item.category]
-                                                }}
-                                                </badge>
-                                                <badge type="warning" rounded>{{ "Ubicación: " + item.location }}
-                                                </badge>
-                                                <badge type="warning" rounded>{{ "Fecha: " + item.date.slice(0, 10) }}
-                                                </badge>
-                                                <badge type="warning" rounded>{{ "Hora Inicio: " + item.start_time }}
-                                                </badge>
-                                                <badge type="warning" rounded>{{ "Hora Fin: " + item.end_time }}</badge>
-                                            </div>
-                                            <base-button v-on:click="comprobarInscripcion(item.name)" type="warning"
-                                                class="mt-4">
-                                                ¡Inscríbete!
-                                            </base-button>
-                                        </card>
-                                    </div>
+                                    
                                 </div>
                             
                             </div>

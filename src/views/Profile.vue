@@ -41,7 +41,6 @@
                             <div class="h6 mt-4"><img src="@/assets/ColteerImg/Icons/email.svg"><i class="ni business_briefcase-24 mr-2"></i> {{datavoluntario.email}}</div>
                             <div class="h6 mt-4"><img src="@/assets/ColteerImg/Icons/telephone.svg"><i class="ni business_briefcase-24 mr-2"></i> {{datavoluntario.phone}}</div>
                             <div class="h6 mt-4"><img src="@/assets/ColteerImg/Icons/document.svg"><i class="ni business_briefcase-24 mr-2"></i> {{datavoluntario.document}}</div>
-                        
                         </div>
                         <div class="mt-5 py-5 border-top text-center">
                             <div class="row justify-content-center">
