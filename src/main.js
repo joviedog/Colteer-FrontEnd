@@ -28,7 +28,6 @@ import "element-ui/lib/theme-chalk/index.css";
 import IconsPlugin from 'bootstrap-vue';
 import BootstrapVueIcons from 'bootstrap-vue';
 import IconsPlugin from 'bootstrap-vue'
-
 var token = localStorage.getItem('token');
 if(token)
     axios.defaults.headers.common['Authorization'] = 'Token ' + token;
