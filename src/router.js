@@ -38,7 +38,6 @@ import RazayEtnia from "./views/components/VolunteerTemas/RazayEtnia.vue";
 import Salud from "./views/components/VolunteerTemas/Salud.vue";
 import Veteranos from "./views/components/VolunteerTemas/Veteranos.vue";
 
-
 Vue.use(Router);
 
 export default new Router({
