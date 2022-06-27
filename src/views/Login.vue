@@ -1,45 +1,101 @@
 <template>
-  <form @submit.prevent="submit">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-    <input v-model="data.email" type="email" class="form-control" placeholder="Email" required>
-    <br>
-    <input v-model="data.password" type="password" class="form-control" placeholder="Password" required>
-
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-  </form>
+    <section class="section section-shaped section-lg my-0">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <base-alert type="danger" dismissible v-if="this.errorInicioSesion">
+            <span class="alert-inner--icon"><i class="fa fa-exclamation-triangle"></i></span>
+            <span class="alert-inner--text"><strong>¡Error!</strong> Usuario o contraseña incorrectas</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </base-alert>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <card type="secondary" shadow header-classes="bg-white pb-5" body-classes="px-lg-5 py-lg-5"
+                        class="border-0">
+                        <template>
+                            <div class="text-center text-muted mb-4">
+                                <h3>Iniciar Sesión</h3>
+                            </div>
+                            <form v-on:submit.prevent="iniciarSesion">
+                                <div class="form-group">
+                                    <input alternative class="form-control" placeholder="Email" v-model="email"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" alternative type="password" placeholder="Password"
+                                        v-model="password" required>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" id="btnIniciarSesion">Log In</button>
+                                </div>
+                            </form>
+                        </template>
+                    </card>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <a href="#" class="text-light">
+                                <small>Crea una nueva cuenta (voluntario)</small>
+                            </a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="text-light">
+                                <small>Crea una nueva cuenta (entidad)</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
-
-<script lang="ts">
-import {reactive} from 'vue';
-import {useRouter} from "vue-router";
+<script>
+import axios from "axios";
 
 export default {
-  name: "Login",
-  setup() {
-    const data = reactive({
-      email: '',
-      password: ''
-    });
-    const router = useRouter();
+    data() {
+        return {
+            email: "",
+            password: "",
+            errorInicioSesion : false,
+        };
+    },
+    methods: {
+        async iniciarSesion() {
+            var payload = {
+                email: this.email,
+                password: this.password,
+            };
+            try {
+                this.errorInicioSesion = false;
+                let response = await axios.post("http://localhost:8000/api/auth/login", payload);
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user_type', response.data.user.user_type);
+                this.$router.push('/dashboard');
+            } catch (error) {
+                console.log(error.response.data);
+                this.errorInicioSesion = true;
+            }
 
-    const submit = async () => {
-      await fetch('http://localhost:8000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
-      });
-
-    
-      await router.push('/main');
+        checkLogin() {
+            if(localStorage.getItem('token') && localStorage.getItem('user_type'))
+                this.$router.push('/dashboard');
+        }
+    },
+    mounted() {
+        this.checkLogin();
     }
-
-    return {
-      data,
-      submit
-    }
-  }
-}
+};
 </script>
+<style>
+</style>
