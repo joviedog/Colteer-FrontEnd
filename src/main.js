@@ -25,6 +25,9 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import BootstrapVue from 'bootstrap-vue';
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+import IconsPlugin from 'bootstrap-vue';
+import BootstrapVueIcons from 'bootstrap-vue';
+import IconsPlugin from 'bootstrap-vue'
 
 var token = localStorage.getItem('token');
 if(token)
@@ -35,6 +38,8 @@ Vue.use(Argon);
 Vue.use(VueSweetalert2);
 Vue.use(BootstrapVue);
 Vue.use(ElementUI);
+Vue.use(BootstrapVueIcons);
+Vue.use(IconsPlugin);
 
 new Vue({
   router,
