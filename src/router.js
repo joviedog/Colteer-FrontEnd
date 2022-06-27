@@ -128,7 +128,190 @@ export default new Router({
         default: Donations,
         footer: AppFooter
       }  
-    },    
+    },
+    ////////////////////////////////////////////
+    {
+      path: "/animales",
+      name: "animales",
+      components: {
+        header: HeaderDashboard,
+        default: Animales,
+        footer: AppFooter
+      }
+    },
+
+    {
+      path: "/arteycultura",
+      name: "arteycultura",
+      components: {
+        header: HeaderDashboard,
+        default: Arteycultura,
+        footer: AppFooter
+      }
+    },
+
+    {
+      path: "/deportesyactividadesrecreativas",
+      name: "deportesyactividadesrecreativas",
+      components: {
+        header: HeaderDashboard,
+        default: Deportesyactividadesrecreativas,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/educacionyalfabetizacion",
+      name: "educacionyalfabetizacion",
+      components: {
+        header: HeaderDashboard,
+        default: Educacionyalfabetizacion,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/hambre",
+      name: "hambre",
+      components: {
+        header: HeaderDashboard,
+        default: Hambre,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/informaticaytecnologia",
+      name: "informaticaytecnologia",
+      components: {
+        header: HeaderDashboard,
+        default: Informaticaytecnologia,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/inmigrantesyrefugiados",
+      name: "inmigrantesyrefugiados",
+      components: {
+        header: HeaderDashboard,
+        default: Inmigrantesyrefugiados,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/internacional",
+      name: "internacional",
+      components: {
+        header: HeaderDashboard,
+        default: Internacional,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/justiciayLegalidad",
+      name: "justiciayLegalidad",
+      components: {
+        header: HeaderDashboard,
+        default: JusticiayLegalidad,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/lgbtg",
+      name: "lgbtg",
+      components: {
+        header: HeaderDashboard,
+        default: LGBTQ,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/medioambiente",
+      name: "medioambiente",
+      components: {
+        header: HeaderDashboard,
+        default: Medioambiente,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/mediosdecomunicacion",
+      name: "mediosdecomunicacion",
+      components: {
+        header: HeaderDashboard,
+        default: Mediosdecomunicacion,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/mujeres",
+      name: "mujeres",
+      components: {
+        header: HeaderDashboard,
+        default: Mujeres,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/ninosjovenes",
+      name: "ninosjovenes",
+      components: {
+        header: HeaderDashboard,
+        default: NinosJovenes,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/discapacidad",
+      name: "discapacidad",
+      components: {
+        header: HeaderDashboard,
+        default: Discapacidad,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/personasmayores",
+      name: "personasmayores",
+      components: {
+        header: HeaderDashboard,
+        default: PersonasMayores,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/personassinhogar",
+      name: "personassinhogar",
+      components: {
+        header: HeaderDashboard,
+        default: Personassinhogar,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/razayetnia",
+      name: "razayetnia",
+      components: {
+        header: HeaderDashboard,
+        default: RazayEtnia,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/salud",
+      name: "salud",
+      components: {
+        header: HeaderDashboard,
+        default: Salud,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/veteranos",
+      name: "veteranos",
+      components: {
+        header: HeaderDashboard,
+        default: Veteranos,
+        footer: AppFooter
+      }
+    } 
   ],
   scrollBehavior: to => {
     if (to.hash) {
