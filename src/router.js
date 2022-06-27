@@ -127,7 +127,7 @@ export default new Router({
         header: HeaderDashboard,
         default: Donations,
         footer: AppFooter
-      }  
+      }
     },
 
 ////////////////////////////////////////////
@@ -312,7 +312,7 @@ export default new Router({
         default: Veteranos,
         footer: AppFooter
       }
-    } 
+    }
   ],
   scrollBehavior: to => {
     if (to.hash) {
