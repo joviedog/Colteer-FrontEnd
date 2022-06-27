@@ -128,7 +128,7 @@ export default new Router({
         default: Donations,
         footer: AppFooter
       }  
-    }    
+    },    
   ],
   scrollBehavior: to => {
     if (to.hash) {
