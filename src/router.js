@@ -129,6 +129,7 @@ export default new Router({
         footer: AppFooter
       }  
     },
+    
     ////////////////////////////////////////////
     {
       path: "/animales",
