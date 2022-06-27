@@ -23,7 +23,8 @@ import './registerServiceWorker';
 import axios from "axios";
 import VueSweetalert2 from 'vue-sweetalert2';
 import BootstrapVue from 'bootstrap-vue';
-
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 
 
 var token = localStorage.getItem('token');
