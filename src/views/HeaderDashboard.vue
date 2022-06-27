@@ -65,7 +65,7 @@ export default {
                     "Content-Type": "application/json",
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                await axios.post("http://localhost:8000/api/auth/logout", {}, { headers });
+                await axios.post("https://colteerbe.herokuapp.com/api/auth/logout", {}, { headers });
                 localStorage.removeItem('token');
                 localStorage.removeItem('user_type');
                 this.$router.push('/');

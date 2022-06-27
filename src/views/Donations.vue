@@ -55,7 +55,7 @@ export default {
             };
             try {
                 this.errorInicioSesion = false;
-                let response = await axios.post("http://localhost:8000/api/auth/login", payload);
+                let response = await axios.post("https://colteerbe.herokuapp.com/api/auth/login", payload);
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
                 localStorage.setItem('token', response.data.token);
                 this.$router.push('/dashboard');

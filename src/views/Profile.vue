@@ -75,7 +75,7 @@ export default {
                 const headers={
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/auth/volunteer", {headers});
+                let response = await axios.get("https://colteerbe.herokuapp.com/api/auth/volunteer", {headers});
                 console.log(response.data);
                 this.datavoluntario = response.data;
 

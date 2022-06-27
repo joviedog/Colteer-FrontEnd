@@ -123,7 +123,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/sessions/session", { headers });
+                let response = await axios.get("https://colteerbe.herokuapp.com/api/sessions/session", { headers });
                 this.sessions = response.data;
             } catch (error) {
                 console.log(error);
@@ -147,7 +147,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/approve-volunteer/"+String(idVolunteer);
+                const url = "https://colteerbe.herokuapp.com/api/sessions/session/" + String(idSession) + "/approve-volunteer/"+String(idVolunteer);
                 let response = await axios.post(url, {}, { headers });
             } catch (error) {
                 console.log(error);
@@ -169,7 +169,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/reject-volunteer/"+String(idVolunteer);
+                const url = "https://colteerbe.herokuapp.com/api/sessions/session/" + String(idSession) + "/reject-volunteer/"+String(idVolunteer);
                 let response = await axios.post(url, {}, { headers });
             } catch (error) {
                 console.log(error);
@@ -181,7 +181,7 @@ export default {
                 const headers={
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/auth/volunteer", {headers});
+                let response = await axios.get("https://colteerbe.herokuapp.com/api/auth/volunteer", {headers});
                 console.log(response.data);
                 this.dataVolunteersearch = response.data;
 

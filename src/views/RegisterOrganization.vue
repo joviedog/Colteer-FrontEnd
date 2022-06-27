@@ -88,7 +88,7 @@ export default {
     },
     methods: {
         async handleSubmit(){
-            await axios.post('http://localhost:8000/api/auth/register_organization',{
+            await axios.post('https://colteerbe.herokuapp.com/api/auth/register_organization',{
                 name:this.name,
                 username:this.username,
                 email:this.email,
