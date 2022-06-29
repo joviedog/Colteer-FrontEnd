@@ -15,7 +15,8 @@ import Donations from "./views/Donations.vue";
 import Stats from "./views/Stats.vue";
 import Turn from "./views/Turn.vue";
 import StaffPicking from "./views/StaffPicking.vue";
-
+import Legal from "./views/Legal.vue";
+import FAQ from "./views/FAQ.vue"
 
 //TEMAS DE VOLUNTARIADO
 import Animales from "./views/components/VolunteerTemas/Animales.vue";
@@ -60,6 +61,24 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Landing,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/legal",
+      name: "legal",
+      components: {
+        header: AppHeader,
+        default: Legal,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/FAQ",
+      name: "FAQ",
+      components: {
+        header: AppHeader,
+        default: FAQ,
         footer: AppFooter
       }
     },

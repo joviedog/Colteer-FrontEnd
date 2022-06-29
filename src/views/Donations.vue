@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Donation from "/Users/jorge/Downloads/Colteer-FrontEnd-feature-newSession/src/components/Donation.vue";
+import Donation from "@/components/Donation.vue";
 
 export default {
   name: "App",
