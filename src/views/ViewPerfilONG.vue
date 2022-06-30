@@ -86,7 +86,7 @@ export default {
         };
     },
     /*mounted:function(){
-      let direction = "http://localhost:8000/api/auth/register_volunteer";
+      let direction = "https://colteerbe.herokuapp.com/api/auth/register_volunteer";
       axios.get(direction).then(data => {
           this.email = data.email;
           this.password = data.password;

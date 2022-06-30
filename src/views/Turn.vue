@@ -140,7 +140,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/my-sessions/", { headers });
+                let response = await axios.get("https://colteerbe.herokuapp.com/api/my-sessions/", { headers });
                 this.sessions = response.data;
             } catch (error) {
                 console.log(error);
@@ -169,7 +169,7 @@ export default {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
 
-                let response = await axios.post("http://localhost:8000/api/sessions/session/" + this.idSession +
+                let response = await axios.post("https://colteerbe.herokuapp.com/api/sessions/session/" + this.idSession +
                     "/create-turn", dataTurn, { headers });
 
                 Swal.fire({
