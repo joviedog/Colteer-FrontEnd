@@ -76,6 +76,7 @@
 <script>
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+import axios from "axios";
 
 let fechaActual = new Date();
 
