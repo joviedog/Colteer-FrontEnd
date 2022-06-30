@@ -10,6 +10,13 @@
             <span></span>
             <span></span>
         </div>
+        <base-alert type="success" dismissible v-if="this.creacionExitosa">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text"><strong>¡Listo! </strong> Te has registrado correctamente</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </base-alert>
         <div class="container pt-lg-md">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
@@ -19,7 +26,7 @@
                             <div class="text-center text-muted mb-4">
                                 <h4>Regístrate como Voluntario</h4>
                             </div>
-                            <form v-on:submit.prevent="registrarVoluntario">
+                            <form v-on:submit.prevent="handleSubmit">
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Nombre</h6>
                                     <input alternative class="form-control" placeholder="Name" required>
@@ -44,8 +51,8 @@
                                     <h6 for="inputNombreSesion">Fecha de Nacimiento</h6>
                                     <base-input addon-left-icon="ni ni-calendar-grid-58">
                                         <flat-picker slot-scope="{focus, blur}" @on-open="focus" @on-close="blur"
-                                            :config="{ allowInput: true, maxDate: new Date() }" class="form-control datepicker"
-                                            v-model="dates.simple">
+                                            :config="{ allowInput: true }"
+                                            class="form-control datepicker" v-model="dates.simple">
                                         </flat-picker>
                                     </base-input>
                                 </div>
@@ -76,34 +83,32 @@ export default {
     data() {
         return {
             dates: {
-            simple: fechaActual.toISOString().split('T')[0] //Esto es para el calendario
-            //Tiene que agregar las demas variables para los otros campos
-        },
-        name: '',
-        username:'',
-        email: '',
-        document: '',
-        phone: '',
-        birthday: '',
-        password: ''          
+                simple: fechaActual.toISOString().split('T')[0] //Esto es para el calendario
+                //Tiene que agregar las demas variables para los otros campos
+            },
+            name: '',
+            username: '',
+            email: '',
+            document: '',
+            phone: '',
+            birthday: '',
+            password: '',
+            creacionExitosa: false,
         };
     },
     methods: {
-        async handleSubmit(){
-            await axios.post('https://colteerbe.herokuapp.com/api/auth/register_volunteer',{
-                name:this.name,
-                username:this.username,
-                email:this.email,
-                document:this.document,
-                phone:this.phone,
-                birthday:this.birthday,
-                password:this.password,
+        async handleSubmit() {
+            await axios.post('https://colteerbe.herokuapp.com/api/auth/register_volunteer', {
+                name: this.name,
+                username: this.username,
+                email: this.email,
+                document: this.document,
+                phone: this.phone,
+                birthday: this.birthday,
+                password: this.password,
             });
             this.$router.push('/login');
         },
-        registrarVoluntario() {
-            console.log("Usuario registrado");
-        }
     },
     components: { flatPicker }
 };
