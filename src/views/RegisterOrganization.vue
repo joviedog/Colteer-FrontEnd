@@ -19,34 +19,34 @@
                             <div class="text-center text-muted mb-4">
                                 <h4>Regístrate como Organización</h4>
                             </div>
-                            <form v-on:submit.prevent="registrarVoluntario">
+                            <form v-on:submit.prevent="registrarOrganizacion">
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Nombre</h6>
-                                    <input alternative class="form-control" placeholder="Name" required>
+                                    <input alternative class="form-control" placeholder="Name" v-model="name" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Usuario</h6> <!-- Cambie los placeholder-->
-                                    <input alternative class="form-control" placeholder="Username" required>
+                                    <input alternative class="form-control" placeholder="Username"  v-model="username" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Correo</h6>
-                                    <input alternative class="form-control" placeholder="Email" required>
+                                    <input alternative class="form-control" placeholder="Email"  v-model="email" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Teléfono</h6>
-                                    <input alternative class="form-control" placeholder="Phone" required>
+                                    <input alternative class="form-control" placeholder="Phone"  v-model="phone" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Documento de Identidad</h6>
-                                    <input alternative class="form-control" placeholder="Document" required>
+                                    <input alternative class="form-control" placeholder="Document"  v-model="document" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">tiipo de organizacion</h6>
-                                    <input class="form-control" alternative type="form-control" placeholder="Organization Type" required>
+                                    <input class="form-control" alternative type="form-control" placeholder="Organization Type"  v-model="org_type" required>
                                 </div>
                                 <div class="form-group">
                                     <h6 for="inputNombreSesion">Contraseña</h6>
-                                    <input class="form-control" alternative type="password" placeholder="Password"
+                                    <input class="form-control" alternative type="password" placeholder="Password" v-model="password"
                                         required>
                                 </div>
                                 <div class="text-center">
@@ -87,18 +87,19 @@ export default {
         };
     },
     methods: {
-        async handleSubmit(){
-            await axios.post('http://localhost:8000/api/auth/register_organization',{
+        async registrarOrganizacion(){
+            await axios.post('https://colteerbe.herokuapp.com/api/auth/register_organization',{
                 name:this.name,
                 username:this.username,
                 email:this.email,
                 phone:this.phone,
                 document:this.document,
                 org_type:this.org_type,
+                password:this.password
             });
             this.$router.push('/login');
         },
-        registrarVoluntario() {
+        checkRegistrarOrganizacion() {
             console.log("Usuario registrado");
         }
     },

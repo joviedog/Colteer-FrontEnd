@@ -43,12 +43,12 @@
                     </card>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <a href="#" class="text-light">
+                            <a href="#/register" class="text-light">
                                 <small>Crea una nueva cuenta (voluntario)</small>
                             </a>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="#" class="text-light">
+                            <a href="#/registerOrganization" class="text-light">
                                 <small>Crea una nueva cuenta (entidad)</small>
                             </a>
                         </div>
@@ -77,7 +77,7 @@ export default {
             };
             try {
                 this.errorInicioSesion = false;
-                let response = await axios.post("http://localhost:8000/api/auth/login", payload);
+                let response = await axios.post("https://colteerbe.herokuapp.com/api/auth/login", payload);
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user_type', response.data.user.user_type);
                 this.$router.push('/dashboard');

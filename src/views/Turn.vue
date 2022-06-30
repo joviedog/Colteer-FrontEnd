@@ -140,7 +140,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/my-sessions/", { headers });
+                let response = await axios.get("https://colteerbe.herokuapp.com/api/my-sessions/", { headers });
                 this.sessions = response.data;
             } catch (error) {
                 console.log(error);

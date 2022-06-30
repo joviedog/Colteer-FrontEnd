@@ -17,6 +17,7 @@ import Turn from "./views/Turn.vue";
 import StaffPicking from "./views/StaffPicking.vue";
 import Legal from "./views/Legal.vue";
 import FAQ from "./views/FAQ.vue"
+import RegisterOrganization from "./views/RegisterOrganization.vue";
 
 //TEMAS DE VOLUNTARIADO
 import Animales from "./views/components/VolunteerTemas/Animales.vue";
@@ -97,6 +98,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Register,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/registerOrganization",
+      name: "registerOrganization",
+      components: {
+        header: AppHeader,
+        default: RegisterOrganization,
         footer: AppFooter
       }
     },

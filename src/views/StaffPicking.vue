@@ -43,21 +43,66 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">Correo</th>
-                                                <th scope="col">Documento</th>
                                                 <th scope="col">Telefono</th>
+                                                <th scope="col">Status</th>
                                                 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="idVolunteer in this.dataVolunteersearch" :key="idVolunteer.aux">
-                                                    <th scope="row"></th>
-                                                    <td>{{dataVolunteersearch.name}}</td>
-                                                    <td>{{dataVolunteersearch.email}}</td>
-                                                    <td>{{dataVolunteersearch.document}}</td>
-                                                    <td>{{dataVolunteersearch.phone}}</td>
-                                                    <td><b-button variant="success"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
-                                                    <td><b-button variant="danger"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
+                                                <tr>
+                                                    <th ></th>
+                                                        <td>Jota Mario Velez</td>
+                                                        <td>jmvelez@unal.edu.co</td>
+                                                        <td>3103154567</td>
+                                                        <td><b-button variant="success" v-on:click="approveVolunteer()"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
+                                                        <td><b-button variant="danger" v-on:click="rejectVolunteer()"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
                                                 </tr>
+
+                                                <tr>
+                                                    <th ></th>
+                                                        <td>Juan Pablo Bustamante</td>
+                                                        <td>jubustamantem@unal.edu.co</td>
+                                                        <td>3213249137</td>
+                                                        <td><b-button variant="success" v-on:click="approveVolunteer()"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
+                                                        <td><b-button variant="danger" v-on:click="rejectVolunteer()"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th ></th>
+                                                        <td>Maria Paula Calderon</td>
+                                                        <td>macalderonj@unal.edu.co</td>
+                                                        <td>3156556608</td>
+                                                        <td><b-button variant="success" v-on:click="approveVolunteer()"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
+                                                        <td><b-button variant="danger" v-on:click="rejectVolunteer()"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th ></th>
+                                                        <td>Julian Steven Vega</td>
+                                                        <td>jvegad@unal.edu.co</td>
+                                                        <td>3144875425</td>
+                                                        <td><b-button variant="success" v-on:click="approveVolunteer()"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
+                                                        <td><b-button variant="danger" v-on:click="rejectVolunteer()"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th ></th>
+                                                        <td>Julian Cordero</td>
+                                                        <td>ccordero@unal.edu.co</td>
+                                                        <td>3144410732</td>
+                                                        <td><b-button variant="success" v-on:click="approveVolunteer()"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
+                                                        <td><b-button variant="danger" v-on:click="rejectVolunteer()"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th ></th>
+                                                        <td>Santiago Vallejo</td>
+                                                        <td>sarodriguezva@unal.edu.co</td>
+                                                        <td>3204192656</td>
+                                                        <td><b-button variant="success" v-on:click="approveVolunteer()"><img src="@/assets/ColteerImg/Icons/person.svg"></b-button></td>
+                                                        <td><b-button variant="danger" v-on:click="rejectVolunteer()"><img src="@/assets/ColteerImg/Icons/eliminar.svg"></b-button></td>
+                                                </tr>
+                                                
                                                 
                                             </tbody>
                                             </table>
@@ -123,8 +168,9 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/sessions/session", { headers });
-                this.sessions = response.data;
+                console.log("Requesting volunteers")
+                // let response = await axios.get("https://colteerbe.herokuapp.com/api/sessions/session", { headers });
+                // this.sessions = response.data;
             } catch (error) {
                 console.log(error);
 
@@ -134,7 +180,10 @@ export default {
 
         async approveVolunteer(nameSession) {
             try {
+                alert("Voluntario añadido!")
                 var idSession = -1;
+                
+                
                 for (var i = 0; i < this.sessions.length; i++) {
                     if (this.sessions[i].name == nameSession) {
                         idSession = this.sessions[i].id;
@@ -147,7 +196,8 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/approve-volunteer/"+String(idVolunteer);
+                const url = "https://colteerbe.herokuapp.com/api/sessions/session/" + String(idSession) + "/approve-volunteer/"+String(idVolunteer);
+                console.log(url)
                 let response = await axios.post(url, {}, { headers });
             } catch (error) {
                 console.log(error);
@@ -156,6 +206,7 @@ export default {
 
         async rejectVolunteer(nameSession) {
             try {
+                alert("Voluntario rechazado!")
                 var idSession = -1;
                 for (var i = 0; i < this.sessions.length; i++) {
                     if (this.sessions[i].name == nameSession) {
@@ -169,7 +220,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                const url = "http://localhost:8000/api/sessions/session/" + String(idSession) + "/reject-volunteer/"+String(idVolunteer);
+                const url = "https://colteerbe.herokuapp.com/api/sessions/session/" + String(idSession) + "/reject-volunteer/"+String(idVolunteer);
                 let response = await axios.post(url, {}, { headers });
             } catch (error) {
                 console.log(error);
@@ -181,9 +232,10 @@ export default {
                 const headers={
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.get("http://localhost:8000/api/auth/volunteer", {headers});
-                console.log(response.data);
+                let response = await axios.get("https://colteerbe.herokuapp.com/api/my-sessions", {headers});
+                
                 this.dataVolunteersearch = response.data;
+                
 
             } catch (error) {
                 console.log(error);

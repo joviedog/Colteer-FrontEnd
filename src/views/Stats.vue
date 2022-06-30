@@ -92,13 +92,13 @@ export default {
     methods: {
         async getStatics() {
             try {
-                let response = await axios.get("http://localhost:8000/api/statistics/number-of-volunteers");
+                let response = await axios.get("https://colteerbe.herokuapp.com/api/statistics/number-of-volunteers");
                 this.numberOfVolunteers = response.data;
 
-                response = await axios.get("http://localhost:8000/api/statistics/donations");
+                response = await axios.get("https://colteerbe.herokuapp.com/api/statistics/donations");
                 this.donations = response.data;
 
-                response = await axios.get("http://localhost:8000/api/statistics/volunteers-by-month");
+                response = await axios.get("https://colteerbe.herokuapp.com/api/statistics/volunteers-by-month");
                 this.volunteersByMonth = response.data;
 
                 this.transformData();

@@ -195,7 +195,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                let response = await axios.post("http://localhost:8000/api/sessions/create-session", dataSession, { headers });
+                let response = await axios.post("https://colteerbe.herokuapp.com/api/sessions/create-session", dataSession, { headers });
                 this.creacionExitosa = true;
                 this.nombreSesion = "";
                 this.descripcionSesion = "";

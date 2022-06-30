@@ -205,7 +205,7 @@ export default {
                 const headers = {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 };
-                const url = "http://localhost:8000/api/search/sessions/by_category";
+                const url = "https://colteerbe.herokuapp.com/api/search/sessions/by_category";
                 let response = await axios.post(url, {}, { headers });
             } catch (error) {
                 console.log(error);
