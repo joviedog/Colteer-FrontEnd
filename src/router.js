@@ -18,6 +18,8 @@ import StaffPicking from "./views/StaffPicking.vue";
 import Legal from "./views/Legal.vue";
 import FAQ from "./views/FAQ.vue"
 import RegisterOrganization from "./views/RegisterOrganization.vue";
+import People from "./views/People.vue";
+import Contact from "./views/Contact.vue";
 
 //TEMAS DE VOLUNTARIADO
 import Animales from "./views/components/VolunteerTemas/Animales.vue";
@@ -71,6 +73,24 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Legal,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/people",
+      name: "people",
+      components: {
+        header: AppHeader,
+        default: People,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      components: {
+        header: AppHeader,
+        default: Contact,
         footer: AppFooter
       }
     },

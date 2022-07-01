@@ -2,6 +2,9 @@
   <div id="app">
     <img width="55%" src="https://dummyimage.com/600x200/fff/&text=Donate+and+Support+US">
     <Donation/>
+    <br><br>
+    <h1><strong>Tambien puedes apoyar por Nequi</strong></h1>
+    <img src="https://s3.amazonaws.com/nequi-wp-colombia/wp-content/app/wp-content/uploads/2019/01/Sticker.png">
   </div>
 </template>
 

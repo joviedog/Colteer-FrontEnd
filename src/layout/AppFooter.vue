@@ -18,6 +18,12 @@
                             <a href="#/legal" class="nav-link" rel="noopener">Legal</a>
                         </li>
                         <li class="nav-item">
+                            <a href="#/People" class="nav-link" rel="noopener">Desarrolladores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#/Contact" class="nav-link" rel="noopener">Contacto</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#/" class="nav-link" target="_blank" rel="noopener">Blog</a>
                         </li>
                     </ul>
