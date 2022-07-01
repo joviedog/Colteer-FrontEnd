@@ -19,7 +19,10 @@
                                 Us</a>
                         </li>
                         <li class="nav-item">
-                            <a href="http://blog.creative-tim.com" class="nav-link" target="_blank" rel="noopener">Blog</a>
+                            <a href="https://www.reddit.com/r/Colteer/" class="nav-link" target="_blank" rel="noopener">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://analytics.google.com/analytics/web/?authuser=3#/a233396016p321537031/admin/streams/table/" class="nav-link" target="_blank" rel="noopener">Analytics</a>
                         </li>
                         <li class="nav-item">
                             <a href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
