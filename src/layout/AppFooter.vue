@@ -19,10 +19,10 @@
                                 Us</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.reddit.com/r/Colteer/" class="nav-link" target="_blank" rel="noopener">Blog</a>
+                            <a href="https://www.reddit.com/r/Colteer/" class="nav-link" target="_blank" rel="noopener"><img src="@/assets/ColteerImg/Icons/reddit.svg">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://analytics.google.com/analytics/web/?authuser=3#/a233396016p321537031/admin/streams/table/" class="nav-link" target="_blank" rel="noopener">Analytics</a>
+                            <a href="https://analytics.google.com/analytics/web/?authuser=3#/a233396016p321537031/admin/streams/table/" class="nav-link" target="_blank" rel="noopener"><img src="@/assets/ColteerImg/Icons/estadisticass.svg">Analytics</a>
                         </li>
                         <li class="nav-item">
                             <a href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
