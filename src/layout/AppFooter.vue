@@ -11,6 +11,15 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="nav nav-footer justify-content-end">
+                        <!-- Facebook -->
+                        <a class="btn btn-primary" style="background-color: #3b5998;" href="https://www.facebook.com/groups/624498801015981" role="button"
+                        ><i class="fab fa-facebook-f"></i
+                        ></a>
+
+                        <!-- Twitter -->
+                        <a class="btn btn-primary" style="background-color: #55acee;" href="https://twitter.com/colteeer" role="button"
+                        ><i class="fab fa-twitter"></i
+                        ></a>
                         <li class="nav-item">
                             <a href="#/FAQ" class="nav-link" rel="noopener">Preguntas Frecuentes</a>
                         </li>
@@ -24,7 +33,7 @@
                             <a href="#/Contact" class="nav-link" rel="noopener">Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#/" class="nav-link" target="_blank" rel="noopener">Blog</a>
+                            <a href="https://www.reddit.com/r/Colteer/" class="nav-link" target="_blank" rel="noopener">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a href="https://www.reddit.com/r/Colteer/" class="nav-link" target="_blank" rel="noopener"><img src="@/assets/ColteerImg/Icons/reddit.svg">Blog</a>
